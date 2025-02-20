@@ -1,0 +1,11 @@
+.aliasrc
+.bashrc
+.config/alacritty/alacritty.yml
+.config/helix/config.toml
+.config/i3/config
+.config/kitty/kitty.conf
+.config/nvim/init.vim
+.config/polybar/config
+.config/qtile/config.py
+.config/rofi/config
+.config/yazi/yazi.toml

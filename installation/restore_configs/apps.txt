@@ -1,0 +1,8 @@
+neovim
+alacritty
+kitty
+helix
+i3
+polybar
+rofi
+yazi
