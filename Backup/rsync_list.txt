@@ -2,6 +2,7 @@
 .bashrc
 [.config]
 alacritty
+helix
 i3
 kitty
 nvim

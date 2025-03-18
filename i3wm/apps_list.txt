@@ -5,11 +5,11 @@ i3blocks
 autotiling
 dmenu
 alacritty
-xrandr
-pamac
 numlockx
 volumeicon
 feh
 xfce4-power-manager
 xfce4-notifyd
 picom
+polkit-gnome
+

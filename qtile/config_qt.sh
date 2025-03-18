@@ -5,15 +5,15 @@ apps_file="./apps_list.txt"  # Path to your apps list file
 # String to store the apps that are not installed
 not_installed_apps=""
 
-# Configuring i3 wm partially following the website https://itsfoss.com/i3-customization/
 
 # This first part is needed only if there is no any graphical environment installed otherwise are already installed
 #sudo pacman -S xorg lightdm lightdm-gtk-greeter
 #sudo systemctl enable lightdm.service
 #sudo systemctl start lightdm.service
 
-# Here start the first real part of installation of the i3 window manager and some package that are needed
-#sudo pacman -S i3-wm i3lock i3status i3blocks autotiling dmenu alacritty
+# SYSTEM UPDATE
+echo "System update..."
+sudo pacman -Syu
 
 
 # --- Application Installation ---
@@ -47,10 +47,11 @@ else
   echo "All apps in the list are already installed."
 fi
 
-
-cp config $HOME/.config/i3/
-cp keybindings.config $HOME/.config/i3/
-cp i3status.conf $HOME/.config/i3/
-cp .Xresources $HOME/
-cp -r .Xresources.d $HOME/
+mkdir -p $HOME/.config/qtile
+cp config.py $HOME/.config/qtile/
+cp -r rofi $HOME/.config/qtile/
+cp -r scripts $HOME/.config/qtile/
+cp -r settings $HOME/.config/qtile/
+cp -r sxhkd $HOME/.config/qtile/
+cp -r themes $HOME/.config/qtile/
 

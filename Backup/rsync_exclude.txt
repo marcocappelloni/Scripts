@@ -3,6 +3,7 @@ node_modules/
 VMs/
 cache/
 temp/
+VirtualBox/
 *.iso
 *.tmp
 *.bck
