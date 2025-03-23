@@ -2,6 +2,7 @@
 
 # CMDs
 host=`hostname`
+style="$HOME/.config/powermenu/style.rasi"
 
 # Options
 shutdown='Shutdown'
@@ -14,7 +15,7 @@ no='No'
 rofi_cmd() {
 	rofi -dmenu \
 		-p "$host" \
-		-theme ./style.rasi
+		-theme ${style}
 }
 
 # Confirmation CMD
@@ -27,7 +28,7 @@ confirm_cmd() {
 		-dmenu \
 		-p 'Confirmation' \
 		-mesg 'Are you Sure?' \
-		-theme ./style.rasi
+		-theme ${style}
 }
 
 # Ask for confirmation
