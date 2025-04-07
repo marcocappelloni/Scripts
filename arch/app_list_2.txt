@@ -1,0 +1,13 @@
+flameshot
+galculator
+gpick
+imagewriter
+libreoffice
+localsend
+meld
+okular
+pcmanfm
+sublime-text
+textstudio
+thunderbird
+vlc
