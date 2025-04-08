@@ -2,11 +2,13 @@ btop
 chromium
 dmenu
 dunst
+fzf
 git
 gsimplecal
 kitty
 krita
 libreoffice
+lsd
 meld
 neofetch
 neovim
@@ -44,3 +46,9 @@ lxrandr
 lxappearance
 nodejs
 
+nala #package manager debian
+
+#bashrc
+lsd #better ls
+fzf
+bat #better cat
