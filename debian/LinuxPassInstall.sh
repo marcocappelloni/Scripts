@@ -7,7 +7,7 @@ echo "Do you want to install the packages needed? (Y/N)"
 read ANSWER
 if [ $ANSWER = 'Y' -o $ANSWER = 'y' ]
 then
-    sudo pacman -S pass dmenu xclip qtpass
+    sudo apt-get install pass dmenu xclip qtpass
 fi
 
 echo -e "\n"
