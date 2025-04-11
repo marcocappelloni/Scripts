@@ -1,16 +1,5 @@
 .aliasrc
 .bashrc
-[.config]
-alacritty
-helix
-i3
-kitty
-nvim
-polybar
-qtile
-rofi
-yazi
-[]
 .dotfiles
 .gnupg
 .password-store
