@@ -5,6 +5,7 @@ dunst
 fzf
 git
 gsimplecal
+gufw
 kitty
 krita
 libreoffice
@@ -26,7 +27,6 @@ stow
 sxhkd
 texstudio
 thunderbird
-ufw
 virtualbox
 virtualbox-host-modules-arch
 vlc

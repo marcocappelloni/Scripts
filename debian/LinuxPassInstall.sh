@@ -19,17 +19,17 @@ then
     echo "----- Generating the gpg key -----"
     echo -e "\n"
     gpg --full-generate-key
-fi
 
-echo -e "\n"
-echo "Do you want to insert the gpg key? (Y/N)"
-read ANSWER
-if [ $ANSWER = 'Y' -o $ANSWER = 'y' ]
-then
     echo -e "\n"
-    echo "Insert the gpg key: "
-    read GPGKEY
-    pass init \"$GPGKEY\"
+    echo "Do you want to insert the gpg key? (Y/N)"
+    read ANSWER
+    if [ $ANSWER = 'Y' -o $ANSWER = 'y' ]
+    then
+        echo -e "\n"
+        echo "Insert the gpg key: "
+        read GPGKEY
+        pass init \"$GPGKEY\"
+    fi
 fi
 
 echo "Copy the \".gnupg\" and the \".password-store\" directories from the usb key to the home directory"
