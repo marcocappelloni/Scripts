@@ -12,9 +12,9 @@ packages=(
     "python3-xcffib"
     "libxkbcommon-dev"
     "libxkbcommon-x11-dev"
-    "alsa-utils"
-    "tilix"
-    "firefox-esr"
+#    "alsa-utils"
+#    "tilix"
+#    "firefox-esr"
 )
 
 # Function to read common packages from a file
