@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt install lsd
-cp .aliasrc $HOME/
+cp .bash_aliases $HOME/
 
 # Adding qtile.desktop to Lightdm xsessions directory
 cat << EOF >> $HOME/.bashrc
@@ -9,7 +9,7 @@ cat << EOF >> $HOME/.bashrc
 bind "set completion-ignore-case on"
 
 ### ALIASES ###
-source $HOME/.aliasrc
+source $HOME/.bash_aliases
 
 ### EXPORT ###
 export EDITOR='nvim'
