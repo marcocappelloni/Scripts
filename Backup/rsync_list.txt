@@ -6,5 +6,6 @@
 .Xresources
 .Xresources.d
 Documents
+dotfiles
 PersonalHome
 Pictures
