@@ -3,11 +3,16 @@
 
 
 PACKAGES_DIR=$HOME/packages
+EXEC_DIR=$HOME/.local/bin
 
-mkdir $PACKAGES_DIR
+mkdir -p $PACKAGES_DIR
+mkdir -p $EXEC_DIR
 
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 chmod u+x nvim-linux-x86_64.appimage
 
 mv nvim-linux-x86_64.appimage $PACKAGES_DIR
-ln -s $HOME/packages/nvim-linux-x86_64.appimage $HOME/.local/bin/nvim
+
+ln -s $HOME/packages/nvim-linux-x86_64.appimage $EXEC_DIR/nvim
+
+echo "Reboot to enable the changes"

@@ -13,9 +13,10 @@ cp ./style.rasi $config_dir
 
 # Create script in /usr/loca/bin
 echo "Copying the actual command that will be executed in /usr/local/bin..."
-sudo cp ./powermenu /usr/local/bin
+ln -s $config_dir/powermenu.sh /usr/local/bin/powermenu
+# sudo cp ./powermenu /usr/local/bin
 
-echo "Changing the permissions of the powermenu command..."
-sudo chmod +rx /usr/local/bin/powermenu
+# echo "Changing the permissions of the powermenu command..."
+# sudo chmod +rx /usr/local/bin/powermenu
 
 echo "TO USE IT ADD THE KEYBINDING TO EXECUTE THE COMMAND \"powermenu\" "

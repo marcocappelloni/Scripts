@@ -1,12 +1,17 @@
 #!/bin/bash
 
+sudo pacman -S lsd
+cp .bash_aliases $HOME/
+
+##### MY OPTIONS AND ALIASES ADDED #####
 # Adding qtile.desktop to Lightdm xsessions directory
 cat << EOF >> $HOME/.bashrc
+
 # ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
 
 ### ALIASES ###
-source $HOME/.aliasrc
+source $HOME/.bash_aliases
 
 ### EXPORT ###
 export EDITOR='nvim'

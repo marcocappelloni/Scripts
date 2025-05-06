@@ -3,6 +3,7 @@ bat
 btop
 build-essential
 chromium
+curl
 dmenu
 dunst
 flatpak
@@ -18,7 +19,6 @@ lxappearance
 lxrandr
 meld
 micro
-nala 
 neofetch
 neovim
 nitrogen
