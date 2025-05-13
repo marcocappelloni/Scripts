@@ -1,23 +1,23 @@
 #!/bin/bash
 
 cdor() {
-	[[ $# -eq 0 ]] && return
-	builtin cd "$@"
+  [[ $# -eq 0 ]] && return
+  builtin cd "$@"
 }
 
 bettercd() {
-	cdor $1
-	if [ -z $1 ]; then
-		selection="$(ls -ad */ | fzf --height 45% --reverse --info hidden --prompt "$(pwd)/" --preview ' cd_pre="$(echo $(pwd)/$(echo {}))";
+  cdor $1
+  if [ -z $1 ]; then
+    selection="$(ls -ad */ | fzf --height 45% --reverse --info hidden --prompt "$(pwd)/" --preview ' cd_pre="$(echo $(pwd)/$(echo {}))";
                     echo $cd_pre;
                     echo;
                     ls -a --color=always "${cd_pre}";
                     termpix --width 100 --true-color {} 2>/dev/null;
                     bat --style=numbers --theme=ansi --color=always {} 2>/dev/null' --bind alt-j:preview-down,alt-k:preview-up --preview-window=right:45%)"
-		if [[ -d "$selection" ]]; then
-			>/dev/null cdor "$selection"
-		fi
-	fi
+    if [[ -d "$selection" ]]; then
+      >/dev/null cdor "$selection"
+    fi
+  fi
 }
 
 # List of aliases for the bash shell ###
@@ -50,12 +50,22 @@ alias sr="reboot"
 alias mv="mv -i"
 alias rm="rm -I"
 
+### GIT
 alias push="git push -u origin main"
 
+### QTILE
 alias qtconf="cd ~/.config/qtile"
 alias qtlog="nvim ~/.local/share/qtile/qtile.log"
+
+### DWM
+alias dwmconf="nvim ~/packages/suckless/dwm/config.def.h"
+alias dwmmake="cd ~/packages/suckless/dwm; rm config.h; make; sudo make install; cd -"
+alias dwmgo="cd ~/packages/suckless/dwm/"
+
+### NEOVIM
 alias nvconf="cd ~/.config/nvim"
 
+### HELIX
 alias hx="helix"
 
 alias trash-clean="rm -rf ~/.local/share/Trash/*"
