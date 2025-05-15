@@ -1,0 +1,15 @@
+To install and use latex follow this steps:
+
+1) Install TexStudio
+2) Install Tex Live using the Unix instructions from this site: https://www.tug.org/texlive/quickinstall.html (it takes long time)
+3) Add the executables path to the PATH varible in .profile (example of executable path: /usr/local/texlive/2025/bin/x86_64-linux)
+4) Open TexStudio and follow this path: Options -> Configure TexStudio -> Commands
+5) Prepend the path of the executables (/usr/local/texlive/2025/bin/x86_64-linux) to the Latex, PdfLatex... leaving the options for the specific command.
+    The commands shoud be something like:
+      LaTeX: /usr/local/texlive/2023/bin/x86_64-linux/latex (followed by the options)
+      PdfLaTeX: /usr/local/texlive/2023/bin/x86_64-linux/pdflatex (followed by the options)
+      XeLaTeX: /usr/local/texlive/2023/bin/x86_64-linux/xelatex
+      LuaLaTeX: /usr/local/texlive/2023/bin/x86_64-linux/lualatex (followed by the options)
+      BibTeX: /usr/local/texlive/2023/bin/x86_64-linux/bibtex (followed by the options)
+      BibTeX8: /usr/local/texlive/2023/bin/x86_64-linux/bibtex8 (followed by the options)
+      texdoc: /usr/local/texlive/2023/bin/x86_64-linux/texdoc 
