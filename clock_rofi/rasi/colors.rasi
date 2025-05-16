@@ -1,0 +1,12 @@
+* {
+    background:         #212121;
+    background-light:   #272727;
+    foreground:         #F8F8F2;
+    foreground-dark:    #44475A;
+    primary:            #0087BD;
+    //primary:            #FFB300;
+    bordercolor:        #0087BD;
+    //bordercolor:        #FFB300;
+    on:                 #19FFA6;
+    off:                #FF7C0D;
+}
