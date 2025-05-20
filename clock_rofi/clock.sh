@@ -17,10 +17,7 @@
 LOCATION="center"
 ###############################################################
 
-LPATH="$(
-  cd "$(dirname "$0")"
-  pwd -P
-)"
+themedir="~/PersonalHome/Scripts/clock_rofi/rasi/clock.rasi"
 
 # Split date and time into single items
 HOUR="$(date +"%H")"
@@ -33,7 +30,7 @@ MONTH="$(date +"%m")"
 YEAR="$(date +"%Y")"
 
 # Rofi config
-rofi_cmd="rofi -theme $LPATH/rasi/clock.rasi"
+rofi_cmd="rofi -theme $themedir"
 display="$HOUR\n$MINUTES"
 
 # Main

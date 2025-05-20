@@ -1,0 +1,6 @@
+SHELL=/bin/bash
+
+* 6 * * * /home/maky/PersonalHome/Scripts/dimmer.sh 1
+* 17 * * * /home/maky/PersonalHome/Scripts/dimmer.sh 0.9
+* 19 * * * /home/maky/PersonalHome/Scripts/dimmer.sh 0.8 night
+* 20-23 * * * /home/maky/PersonalHome/Scripts/dimmer.sh 6 night
