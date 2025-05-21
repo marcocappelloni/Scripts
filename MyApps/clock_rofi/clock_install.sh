@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ln -s ~/PersonalHome/Scripts/clock_rofi/clock.sh $HOME/.local/bin/clock
-
 # Install the Iosevka font used for the clock
 echo "Do you want to install the Iosevka Nerd Font? (y/n)"
 read response

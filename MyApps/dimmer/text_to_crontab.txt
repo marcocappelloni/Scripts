@@ -1,0 +1,7 @@
+SHELL=/bin/bash
+
+0 6 * * * ~/.local/bin/dimmer 1
+0,30 17,18 * * * ~/.local/bin/dimmer 0.9
+0,30 19 * * * ~/.local/bin/dimmer 0.8 night
+0,30 20-23 * * * ~/.local/bin/dimmer 0.7 night
+0,30 0-5 * * * ~/.local/bin/dimmer 0.7 night"

@@ -4,4 +4,4 @@ To keep the pc awake in qtile add the instruction "run link-to-the-script" with 
 autostart commands.
 
 Example:
-run $HOME/PersonalHome/Scripts/wake-up-screen/insomnia.py
+run $HOME/PersonalHome/Scripts/MyApps/wake-up-screen/insomnia.py
