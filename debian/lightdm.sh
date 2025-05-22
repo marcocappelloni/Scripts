@@ -1,12 +1,11 @@
 #!/bin/bash
 
 service_active_and_enabled() {
-  local service="$1"
   # Check if service is active and enabled
-  sudo systemctl is-active --quiet "$service" && sudo systemctl is-enabled --quiet "$service"
+  sudo systemctl is-active --quiet lightdm && sudo systemctl is-enabled --quiet lightdm
 }
 
-if [ service_active_and_enabled lightdm ]; then
+if service_active_and_enabled; then
   echo "lightdm is already installed and enabled."
   exit 0
 fi

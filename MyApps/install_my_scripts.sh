@@ -21,7 +21,7 @@ ln -s "$DIR_SCRIPT/clock_rofi/clock.sh" "$DIR_EXEC/clock"
 ln -s "$DIR_SCRIPT/dimmer/dimmer.sh" "$DIR_EXEC/dimmer"
 
 # Dmenu to open the config files
-ln -s "$DIR_SCRIPT/list_config_dmenu.sh" "$DIR_EXEC/listconfig"
+ln -s "$DIR_SCRIPT/list_config_dmenu.sh" "$DIR_EXEC/listconfigs"
 
 # Passmenu
 ln -s "$DIR_SCRIPT/passmenuscript/passmenu" "$DIR_EXEC/passmenu"
