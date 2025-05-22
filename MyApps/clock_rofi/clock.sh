@@ -17,7 +17,7 @@
 LOCATION="center"
 ###############################################################
 
-themedir="~/PersonalHome/Scripts/clock_rofi/rasi/clock.rasi"
+themedir="~/PersonalHome/Scripts/MyApps/clock_rofi/rasi/clock.rasi"
 
 # Split date and time into single items
 HOUR="$(date +"%H")"
