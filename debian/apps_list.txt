@@ -4,8 +4,8 @@ btop
 build-essential
 chromium
 curl
-dmenu
 dunst
+fastfetch
 flatpak
 fzf
 git
@@ -19,8 +19,6 @@ lxappearance
 lxrandr
 meld
 micro
-neofetch
-neovim
 nitrogen
 nodejs
 okular

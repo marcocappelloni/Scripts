@@ -6,8 +6,8 @@ DEST_FOLDER="~/packages/suckless"
 sudo apt install libx11-dev
 sudo apt install libxft-dev
 sudo apt install libfreetype6-dev
-sudo apt-get install libxinerama-dev
-sudo apt-get install libxinerama1
+sudo apt install libxinerama-dev
+sudo apt install libxinerama1
 
 # Download and compile dwm
 mkdir -p $DEST_FOLDER

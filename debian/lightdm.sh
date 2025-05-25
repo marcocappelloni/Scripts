@@ -11,5 +11,5 @@ if service_active_and_enabled; then
 fi
 
 sudo apt update
-sudo apt install -y lightdm
+sudo apt install -y lightdm lightdm-settings slick-greeter
 sudo systemctl enable lightdm
