@@ -1,0 +1,18 @@
+## Exec this commands as root
+
+su
+apt install sudo
+usermod -aG sudo maky
+reboot
+
+apt install git micro zram-tools
+
+micro /etc/default/zramswap
+
+"uncomment ALGO=lz4"
+"uncomment PERCENT=50 and change to PERCENT=25"
+
+check that $HOME is set correct
+
+clone Scripts github directory
+git clone https://github.com/marcocappelloni/Scripts.git

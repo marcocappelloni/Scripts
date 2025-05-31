@@ -1,0 +1,2 @@
+thunderbird
+https://flathub.org/apps/org.mozilla.Thunderbird

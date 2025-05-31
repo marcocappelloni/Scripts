@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# install the last neovim (appimage)
+bash ./neovim.sh
+
 # required
 echo "Moving the actual version of neovim in .config/neovim.bak..."
 mv ~/.config/nvim{,.bak}

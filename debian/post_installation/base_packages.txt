@@ -1,0 +1,10 @@
+build-essential
+xbacklight
+xbindkeys
+xinput
+xinit
+xorg
+xorg-dev
+xserver-xorg
+xvkbd
+x11-xserver-utils

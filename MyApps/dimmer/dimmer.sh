@@ -11,16 +11,17 @@
 # Without this variable cron will get confused where to run this script
 export DISPLAY=:0
 
-# My monitors (use xrandr to check the names)
-M1="HDMI-A-0"
-M2="HDMI-A-1"
-
 notif() {
   notify-send -t 3000 "Brightness adjusted!"
 }
 
 [ "$2" = night ] && gamma="1.0:0.95:0.85" || gamma="1.0:1.0:1.0"
 
-xrandr --output "$M1" --brightness "$1" --gamma "$gamma"
-xrandr --output "$M2" --brightness "$1" --gamma "$gamma"
-notif
+dimm() {
+  monitors=$(xrandr | grep "connected" | cut -d ' ' -f 1)
+  while read monitor; do
+    xrandr --output $monitor --brightness "$1" --gamma "$gamma"
+  done <<<"$monitors"
+}
+
+dimm && notif

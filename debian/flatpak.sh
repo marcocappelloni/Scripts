@@ -10,5 +10,8 @@ sudo apt install flatpak
 echo "Adding the remote directory of the flathub repository///"
 sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-echo "Reboot the system"
-sudo reboot
+echo "Reboot the system now? (Y/N)"
+read answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  sudo reboot
+fi

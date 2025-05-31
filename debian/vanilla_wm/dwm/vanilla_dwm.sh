@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEST_FOLDER="~/packages/suckless"
+DEST_FOLDER="$HOME/packages/suckless"
 
 # Install dependencies
 sudo apt install libx11-dev
@@ -17,3 +17,13 @@ make
 sudo make install
 cd -
 sudo chown -R maky:maky $DEST_FOLDER/dwm
+
+# Add dwm.desktop entry for the display managers
+sudo mkdir -p /usr/share/xsessions/
+echo "[Desktop Entry]
+Encoding=UTF-8
+Name=dwm
+Comment=Dynamic Window Manager
+Exec=dwm
+Type=XSession
+Icon=dwm" | sudo tee /usr/share/xsessions/dwm.desktop
