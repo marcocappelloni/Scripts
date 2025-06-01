@@ -21,7 +21,7 @@ git clone https://github.com/marcocappelloni/dotfiles.git $HOME
 
 # Install first group of packages, the essential one
 echo "Installing base packages..."
-bash ./install_apps.sh "./base_packages.txt"
+bash ./install_apps.sh "./1_base_packages.txt"
 
 # Create the remaining directories structure inside HOME
 echo "Creating the default user home directories"
@@ -29,7 +29,7 @@ bash ./create_usr_directories.sh
 
 #install the packages needed for DWM that are inside the debian repository
 echo "Installing dwm packages..."
-bash ./install_apps.sh "./dwm_packages.txt"
+bash ./install_apps.sh "./2_dwm_packages.txt"
 
 echo "Installing my version of dwm"
 install_my_suckless "dwm"
@@ -58,11 +58,11 @@ bash $DEBIAN_SCRIPTS/libreoffice.sh
 
 # install the common packages
 echo "Installing common packages..."
-bash ./install_apps.sh "./common_packages.txt"
+bash ./install_apps.sh "./3_common_packages.txt"
 
 #install the app list packages
 echo "Installing app_list packages..."
-bash ./install_apps.sh "./apps_list.txt"
+bash ./install_apps.sh "./4_apps_list.txt"
 
 # Enable services
 echo "Enabling services"
