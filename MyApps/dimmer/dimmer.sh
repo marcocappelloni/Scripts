@@ -15,12 +15,13 @@ notif() {
   notify-send -t 3000 "Brightness adjusted!"
 }
 
+bright=$1
 [ "$2" = night ] && gamma="1.0:0.95:0.85" || gamma="1.0:1.0:1.0"
 
 dimm() {
   monitors=$(xrandr | grep "connected" | cut -d ' ' -f 1)
   while read monitor; do
-    xrandr --output $monitor --brightness "$1" --gamma "$gamma"
+    xrandr --output $monitor --brightness "$bright" --gamma "$gamma"
   done <<<"$monitors"
 }
 
