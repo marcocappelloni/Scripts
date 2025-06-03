@@ -28,3 +28,9 @@ ln -s "$DIR_SCRIPT/passmenuscript/passmenu" "$DIR_EXEC/passmenu"
 
 # Powermenu
 ln -s "$DIR_SCRIPT/powermenu/powermenu.sh" "$DIR_EXEC/powermenu"
+
+# Cheat Sheet
+ln -s "$DIR_SCRIPT/cheat_sheet.sh" "$DIR_EXEC/ch_sh"
+
+# Stay
+ln -s "$DIR_SCRIPT/stay.sh" "$DIR_EXEC/stay"
