@@ -1,0 +1,17 @@
+Instructions to update grub bootloader:
+
+Youtube video: https://www.youtube.com/watch?v=Y-TQJYJ8g-U
+Download theme: https://www.gnome-look.org/p/1482847
+Installation Instructions: https://k1ng.dev/distro-grub-themes/installation (check for manual installation)
+
+- Download the theme from internet
+- Create the directory "themes" in /boot/grub/ or /boot/grub2/
+- Copy the folder downloaded and unpacked inside the themes directory
+- Edit the file /etc/default/grub :
+  1) Set the resolution: GRUB_GFXMODE=1920x1080
+  2) Set the timeout: GRUB_TIMEOUT=10
+  3) Uncomment the line: GRUB_TERMINAL_OUTPUT="console" (or set to GRUB_TERMINAL="gfxterm")
+  4) Set the path for the theme: GRUB_THEME="BOOT_GRUB_LOCATION/themes/<theme_name>/theme.txt"
+  5) Save and exit
+- Update the grub: sudo update-grub (on debian/ubuntu)
+
