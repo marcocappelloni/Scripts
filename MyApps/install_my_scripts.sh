@@ -34,3 +34,12 @@ ln -s "$DIR_SCRIPT/cheat_sheet.sh" "$DIR_EXEC/ch_sh"
 
 # Stay
 ln -s "$DIR_SCRIPT/stay.sh" "$DIR_EXEC/stay"
+
+# Todo
+ln -s "$DIR_SCRIPT/todo.sh" "$DIR_EXEC/todo"
+
+# Todo menu
+ln -s "$DIR_SCRIPT/todomenu.sh" "$DIR_EXEC/todomenu"
+
+# Keybindings list
+ln -s "$DIR_SCRIPT/Keybindings_list.sh" "$DIR_EXEC/keybindings"

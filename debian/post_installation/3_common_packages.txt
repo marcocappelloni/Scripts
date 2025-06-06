@@ -26,5 +26,6 @@ redshift
 rsync
 stow
 unzip
+vim-runtime
 xdotool
 xfce4-power-manager

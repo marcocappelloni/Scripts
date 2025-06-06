@@ -98,6 +98,8 @@ echo "Installing wifi applet"
 bash $DEBIAN_SCRIPTS/wifi_applet_systray.sh
 echo "Adding bash options and aliases"
 bash $DEBIAN_SCRIPTS/bash/bash_options.sh
+echo "Installing cheat sheet client"
+bash $DEBIAN_SCRIPTS/cheat_sheet_client.sh
 
 #installing yazi
 echo "Installing yazi"
