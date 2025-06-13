@@ -6,6 +6,7 @@ bat
 btop
 curl
 fastfetch
+feh
 fonts-recommended 
 fonts-font-awesome
 fonts-terminus 
