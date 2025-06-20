@@ -43,3 +43,6 @@ ln -s "$DIR_SCRIPT/todomenu.sh" "$DIR_EXEC/todomenu"
 
 # Keybindings list
 ln -s "$DIR_SCRIPT/Keybindings_list.sh" "$DIR_EXEC/keybindings"
+
+# Git global status check
+ln -s "$DIR_SCRIPT/git_global_status.sh" "$DIR_EXEC/gitgstatus"
