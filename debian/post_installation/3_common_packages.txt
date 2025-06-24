@@ -26,6 +26,7 @@ policykit-1-gnome
 redshift
 rsync
 stow
+trash-cli
 unzip
 vim-runtime
 xdotool

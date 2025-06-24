@@ -1,19 +1,32 @@
 #!/bin/bash
 
-string_to_search="Untracked files:"
+strings_to_search=(
+  "Changes not staged for commit"
+  "Changes to be committed"
+  "Untracked files"
+)
+
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 
 check_status() {
   actual_dir="$1"
   cd $HOME/$actual_dir
-  git status | grep "$string_to_search"
-  if [[ $? == 1 ]]; then
-    echo "The $actual_dir git directory is up to date."
-  else
+  modified=false
+
+  for string in "${strings_to_search[@]}"; do
+    git status | grep "$string"
+    if [[ $? == 0 ]]; then
+      modified=true
+    fi
+  done
+
+  if $modified; then
     printf "%sThe %s git directory contains changes%s\n" "$red" "$actual_dir" "$reset"
-    #echo "The $actual_dir git directory contains changes"
+  else
+    echo "The $actual_dir git directory is up to date."
   fi
+
   cd -
 }
 
