@@ -84,7 +84,8 @@ alias ssn="sudo shutdown now"
 alias sr="reboot"
 
 alias mv="mv -i"
-alias rm="rm -I"
+#alias rm="rm -I"
+alias rm="trash-put -v"
 
 ### GIT
 alias push="git push -u origin main"
@@ -104,7 +105,7 @@ alias nvconf="cd ~/.config/nvim"
 ### HELIX
 alias hx="helix"
 
-alias trash-clean="rm -rf ~/.local/share/Trash/*"
+#alias trash-clean="rm -rf ~/.local/share/Trash/*"
 
 #our experimental - best option for the moment
 alias rams='rate-mirrors --allow-root --disable-comments --protocol https arch  | sudo tee /etc/pacman.d/mirrorlist'
