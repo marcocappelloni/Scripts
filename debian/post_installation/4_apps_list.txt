@@ -1,5 +1,7 @@
 chromium
 dunst
+evolution
+evolution-ews
 flameshot
 gcc
 gsimplecal
@@ -12,6 +14,5 @@ pcmanfm
 qtpass
 redshift
 rofi
+simple-scan
 vlc
-evolution
-evolution-ews
