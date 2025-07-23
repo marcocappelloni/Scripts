@@ -5,6 +5,7 @@ avahi-daemon
 bat 
 btop
 curl
+eza
 fastfetch
 feh
 fonts-recommended 
