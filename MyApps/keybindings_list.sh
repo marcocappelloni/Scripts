@@ -3,7 +3,7 @@
 declare -a myArray=(
 
   "super + shift + h   ->    list of configs"
-  "ctrl + h            ->    cheat sheets"
+  "super + ctrl + h    ->    cheat sheets"
   "print               ->    screen shot"
   "ctrl + t            ->    fzf select"
   "ctrl + r            ->    fzf history"

@@ -1,4 +1,7 @@
 #!/bin/bash
+# Script to install the applications passed through a text file specified
+# as argument when you call the script.
+# This script is called by base.sh
 
 # Array to store applications that need to be installed
 APPS_TO_INSTALL=()
