@@ -46,3 +46,6 @@ ln -s "$DIR_SCRIPT/Keybindings_list.sh" "$DIR_EXEC/keybindings"
 
 # Git global status check
 ln -s "$DIR_SCRIPT/git_global_status.sh" "$DIR_EXEC/gitgstatus"
+
+# Keyboard battery status
+ln -s "$DIR_SCRIPT/keyboard_battery/status.sh" "$DIR_EXEC/kb_status"

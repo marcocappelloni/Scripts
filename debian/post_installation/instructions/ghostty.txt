@@ -1,0 +1,4 @@
+Follow the instructions on https://github.com/clayrisser/debian-ghostty/
+
+Basically you need to download the .deb file and install with "sudo apt install *.deb"
+

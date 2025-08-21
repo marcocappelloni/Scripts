@@ -14,6 +14,7 @@ mkdir -p $EXEC_DIR
 # added to the executable Directory
 APP_LIST=(
   "nvim"
+  "GIMP"
   "texstudio"
 )
 
