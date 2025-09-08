@@ -1,5 +1,0 @@
-sxhkd
-kitty
-flameshot
-make
-
