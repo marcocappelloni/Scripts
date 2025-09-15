@@ -1,21 +1,45 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-## Spring
-#hours=(6 17 19 20)
+source times_arrays.sh
 
-# Summer
-hours=(5 18 20 21)
+month_name_from_number() {
+  # Use printf to format the number with a leading zero if needed
+  month_number=$(printf "%02d" "$1")
+  # Use the date command to get the full month name from the number
+  month_name=$(date -d "2000-$month_number-01" +%B)
+  echo "$month_name"
+}
 
+cron_jobs_for_month() {
+  m=$1
+  # Declare a local array to receive the passed hours
+  local -a h=("${@:2}")
+  result=""
+  for j in $(seq 0 3); do
+    time_string="${h[$j]}"
 
-# Save the current crontab entries to a variable
-current_crontab=$(crontab -l)
+    # Split the string at the colon
+    IFS=':' read -r hour minute <<<"$time_string"
+    result+="$minute $hour 1-31 $m * $HOME/.local/bin/dimmer ${dimmer_parameters[$j]}"$'\n'
+    # The $'\n' adds a proper newline for each cron job
+  done
 
-# Append a new cron job to the variable
-new_crontab="${current_crontab}
-0 ${hours[0]} * * * $HOME/.local/bin/dimmer 1
-0 ${hours[1]} * * * $HOME/.local/bin/dimmer 0.9
-0 ${hours[2]} * * * $HOME/.local/bin/dimmer 0.8 night
-0 ${hours[3]} * * * $HOME/.local/bin/dimmer 0.7 night"
+  echo "$result"
+}
+
+current_crontab=$(crontab -l | grep -v '\.local/bin/dimmer')
+new_crontab="$current_crontab"$'\n'
+
+for i in $(seq 1 12); do
+  # The month number in cron jobs does not need a leading zero
+  month_number_for_cron=$i
+
+  # Read the times into an array
+  read -ra hours <<<"${times_by_month[$(month_name_from_number $i)]}"
+
+  # Pass the month number and the array correctly
+  new_crontab+="$(cron_jobs_for_month "$month_number_for_cron" "${hours[@]}")"$'\n'
+done
 
 # Update the crontab with the new entries
 echo "$new_crontab" | crontab -
