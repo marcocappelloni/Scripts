@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source times_arrays.sh
+source /home/maky/PersonalHome/Scripts/MyApps/dimmer/times_arrays.sh
 
 # ------------------------------------------------------------------------------
 # 2. Get the current month and select the correct array
