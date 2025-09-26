@@ -16,7 +16,8 @@ notif() {
 }
 
 bright=$1
-[ "$2" = night ] && gamma="1.0:0.95:0.85" || gamma="1.0:1.0:1.0"
+[ "$2" = night ] && gamma="1.0:0.88:0.76" || gamma="1.0:1.0:1.0"
+#[ "$2" = night ] && gamma="1.0:0.95:0.85" || gamma="1.0:1.0:1.0"
 
 dimm() {
   monitors=$(xrandr | grep "connected" | cut -d ' ' -f 1)
