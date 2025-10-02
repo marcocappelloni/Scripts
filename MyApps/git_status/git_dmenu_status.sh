@@ -13,7 +13,8 @@ for directory in "${directories[@]}"; do
 done
 
 if [ ${#modified_repo[@]} -eq 0 ]; then
-  notify-send "Git repos" "All the git repositories are up to date"
+  #notify-send "Git repos" "All the git repositories are up to date"
+  zenity --info --text="All the git repositories are up to date"
   exit 0
 fi
 
