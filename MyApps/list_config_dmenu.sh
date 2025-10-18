@@ -1,5 +1,7 @@
 #!/bin/bash
 
+terminal=kitty
+
 # Define the keywords and their corresponding configuration file paths
 declare -A config_files=(
   ["autostart"]="$HOME/.dwm/autostart.sh"
@@ -12,6 +14,7 @@ declare -A config_files=(
   ["neovim config"]="$HOME/.config/nvim/init.lua"
   ["picom config"]="$HOME/.config/picom.conf"
   ["rofi config"]="$HOME/.config/rofi/config.rasi"
+  ["i3wm config"]="$HOME/.config/i3/config"
   # Add more keywords and file paths as needed
 )
 
@@ -29,7 +32,7 @@ if [ -n "$selected_keyword" ]; then
   # Check if the configuration file exists
   if [ -f "$config_file" ]; then
     # Open the configuration file in neovim in a new kitty window
-    kitty --start-as=normal nvim "$config_file"
+    $terminal --start-as=normal nvim "$config_file"
   else
     echo "Error: Configuration file not found: $config_file" >&2
   fi

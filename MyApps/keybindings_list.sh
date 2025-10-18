@@ -10,6 +10,7 @@ declare -a myArray=(
   "alt + c             ->    fzf cd"
   "super + shift + t   ->    todo menu"
   "super + F9          ->    keybindings"
+  "super + b           ->    vim keybindings"
 )
 
 chosen=$(printf '%s\n' "${myArray[@]}" | dmenu -l 15 -p "Keybindings:")

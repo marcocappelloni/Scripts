@@ -1,11 +1,7 @@
-.aliasrc
-.bashrc
-.dotfiles
 .gnupg
 .password-store
-.Xresources
-.Xresources.d
 Documents
 dotfiles
+packages
 PersonalHome
 Pictures

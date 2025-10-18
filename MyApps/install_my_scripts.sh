@@ -24,7 +24,7 @@ ln -s "$DIR_SCRIPT/dimmer/dimmer.sh" "$DIR_EXEC/dimmer"
 ln -s "$DIR_SCRIPT/list_config_dmenu.sh" "$DIR_EXEC/listconfigs"
 
 # Passmenu
-ln -s "$DIR_SCRIPT/passmenuscript/passmenu" "$DIR_EXEC/passmenu"
+# ln -s "$HOME/PersonalHome/Scripts/passmenuscript/passmenu.sh" "$DIR_EXEC/passmenu"
 
 # Powermenu
 ln -s "$DIR_SCRIPT/powermenu/powermenu.sh" "$DIR_EXEC/powermenu"
