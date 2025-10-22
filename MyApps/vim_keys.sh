@@ -3,6 +3,11 @@
 # Define max length for keybindings
 MAX_WIDTH=22
 
+#Define windows size
+WIDTH=640
+HEIGHT=690
+BORDER_COLOR=$(get_xresource_color color6)
+
 # Function to pad and format a line
 format_line() {
   local key="$1"
@@ -22,6 +27,8 @@ format_line() {
 }
 
 KEYBINDINGS=$(
+  printf "                              VIM SHORTCUTS\n"
+  printf "\n"
   printf "GENERAL COMMANDS\n"
   format_line "z + z" ": Put the current line in the middle of the screen"
   format_line "f + char" ": To jump to the character specified"
@@ -54,30 +61,8 @@ KEYBINDINGS=$(
 
 # Execute Rofi with the markup flag (and remove all column flags)
 printf "%s" "$KEYBINDINGS" | rofi -dmenu \
-  -a "0,7,12,17,23" \
+  -u "0" \
+  -a "2,9,14,19,25" \
   -sep '\n' \
-  -config ~/dotfiles/.config/rofi_list/config.rasi
-
-# # Ensure LIST_ITEMS still uses the tab character (\t)
-# LIST_ITEMS=$(printf "GENERAL COMMANDS\nctrl + l\t: explanation for the keybinding\nshift + ctrl + l\t: explanation for this other keybinding\nanother option\t: another explanation\nANOTHER STYLED HEADER\n")
-#
-# # Use the -display-column-separator flag
-# printf "%s" "$LIST_ITEMS" | rofi -dmenu \
-#   -a "0,4" \
-#   -sep '\n' \
-#   -display-column-separator '\t' \
-#   -config ~/dotfiles/.config/rofi_list/config.rasi
-# # Define all elements, separated by newline
-# LIST_ITEMS=$(printf "GENERAL COMMANDS\nOption 1\nOption 2\nAnother Styled Item")
-#
-# # Define the indexes you want to style (0 and 3)
-# # You can use -a for all of them, or split them into -a and -u for two different styles
-# STYLED_INDICES="0,3"
-#
-# # Execute Rofi
-# printf "%s" "$KEYBINDINGS" | rofi -dmenu \
-#   -a "$STYLED_INDICES" \
-#   -config ~/dotfiles/.config/rofi_list/config.rasi
-
-#zenity --info --width=450 --text="$KEYBINDINGS" --title="Vim keybindings"
-#echo "<span color=\"$col\"><b><u>GENERAL COMMANDS</u></b></span>" | rofi -dmenu -markup -config ~/dotfiles/.config/rofi_list/config.rasi
+  -config ~/dotfiles/.config/rofi_list/config.rasi \
+  -theme-str 'window { width: '$WIDTH'; height: '$HEIGHT'; border: 3px; border-color: '$BORDER_COLOR'; }'
