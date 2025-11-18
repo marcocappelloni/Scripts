@@ -1,7 +1,16 @@
 #!/bin/bash
 
+source ./utilities.sh
+
+question "Would you like to setup the bash shell? (y/n)"
+read response
+if [[ ! "$response" =~ ^[Yy]$ ]]; then
+  exit 0
+fi
+
+msg "Setting up the bash shell..."
 sudo apt install lsd
-cp .bash_aliases $HOME/
+# cp .bash_aliases $HOME/
 
 ##### MY OPTIONS AND ALIASES ADDED #####
 cat <<EOF >>$HOME/.bashrc
@@ -23,13 +32,28 @@ shopt -s dotglob # includes filenames beginning with a '.' in the results of fil
 shopt -s histappend     # do not overwrite history
 shopt -s expand_aliases # expand aliases
 
+# FZF
+show_file_or_dir_preview="if [ -d {} ]; then tree -L 2 {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
+
 # Open in tmux popup if on tmux, otherwise use --height mode
 export FZF_DEFAULT_OPTS='--layout=reverse --border=bold --border=rounded --margin=3% --color=dark --color=border:#225577 --preview="bat --color=always {}"'
 
-# Set the shell color
-# PS1='\[\e[36m\]\u@\h:\w\$ \[\e[0m\]'
-# Adding the git branch to the prompt
-PS1='\[\e[34m\]\u@\h \[\e[32m\]\w \[\e[91m\]$(__git_ps1)\[\e[00m\]$ '
+export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
+export FZF_CTRL_R_OPTS="--style minimal --no-sort --no-preview --info inline"
+export FZF_ALT_C_OPTS="--preview 'tree -L 2 {} | head -200'"
+
+_fzf_comprun() {
+  local command=$1
+  shift
+
+  case "$command" in
+  cd) fzf --preview 'eza --tree --color=always {} | head -200' "$@" ;;
+  export | unset) fzf --preview "eval 'echo \${}'" "$@" ;;
+  ssh) fzf --preview 'dig {}' "$@" ;;
+  git) fzf --preview 'git show --color=always {-1}' "$@" ;;
+  *) fzf --preview "$show_file_or_dir_preview" "$@" ;;
+  esac
+}
 
 # Set up fzf key bindings and fuzzy completion
 # CTRL-T Paste the selected files and directories onto the command-line
@@ -37,6 +61,13 @@ PS1='\[\e[34m\]\u@\h \[\e[32m\]\w \[\e[91m\]$(__git_ps1)\[\e[00m\]$ '
 # ALT-C cd into the selected directory
 eval '$(fzf --bash)'
 
+if [ -f ~/.bash_prompt ]; then
+  source ~/.bash_prompt
+fi
+
 # Set the vi keybindings
 # set -o 
+. "$HOME/.cargo/env"
 EOF
+
+msg "Bash shell set up"

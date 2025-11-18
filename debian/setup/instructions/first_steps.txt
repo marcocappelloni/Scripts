@@ -14,5 +14,5 @@ micro /etc/default/zramswap
 
 check that $HOME is set correct
 
-clone Scripts github directory
+clone Scripts github directory inside $HOME/PersonalHome/
 git clone https://github.com/marcocappelloni/Scripts.git

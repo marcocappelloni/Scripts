@@ -2,10 +2,19 @@
 
 # Bash script to install the app images
 
+source ./utilities.sh
+
+question "Would you like to install appimages? (y/n)"
+read response
+if [[ ! "$response" =~ ^[Yy]$ ]]; then
+  exit 0
+fi
+
 # Directories used
 PACKAGES_DIR=$HOME/packages
 EXEC_DIR=$HOME/.local/bin
 
+msg "Installing appimages..."
 # Create the Directories if they don't exist
 mkdir -p $PACKAGES_DIR
 mkdir -p $EXEC_DIR
@@ -18,15 +27,15 @@ APP_LIST=(
   "texstudio"
 )
 
-echo "Do you want to install the following app images? (Y/N)"
-echo "${APP_LIST[@]}"
+question "Do you want to install the following app images? (Y/N)"
+msg "${APP_LIST[@]}"
 read answer
 if [[ ! "$answer" =~ ^[Yy]$ ]]; then
   exit 0
 fi
 
 for app in "${APP_LIST[$@]}"; do
-  echo "Insert the link to the appimage file for $app:"
+  question "Insert the link to the appimage file for $app:"
   read link
 
   # download the app image in the current directory
@@ -46,4 +55,4 @@ for app in "${APP_LIST[$@]}"; do
 
 done
 
-echo "Reboot to enable the changes"
+msg "App images installed."

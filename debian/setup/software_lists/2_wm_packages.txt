@@ -1,3 +1,4 @@
+autotiling
 flameshot
 kitty
 i3-wm
