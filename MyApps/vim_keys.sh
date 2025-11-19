@@ -5,7 +5,7 @@ MAX_WIDTH=22
 
 #Define windows size
 WIDTH=640
-HEIGHT=690
+HEIGHT=700
 BORDER_COLOR=$(get_xresource_color color6)
 
 # Function to pad and format a line
@@ -35,6 +35,7 @@ KEYBINDINGS=$(
   format_line "ctrl + o" ": Jump backward in the jump list"
   format_line "*" ": Search in the document the string under the cursor"
   format_line "g" ": Goto + comments menu"
+  format_line ":%s/old/new/gc" ": Change old with new asking for confirm"
   printf "\n"
   printf "MACROS\n"
   format_line "q + reg-macro" ": Start recording macro"
