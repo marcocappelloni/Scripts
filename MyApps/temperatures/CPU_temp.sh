@@ -12,7 +12,9 @@ CPU_STRING="k10temp"
 TEMP_LINE="Tctl"
 NUM_LINES=2
 LOW_TEMP=40
+LOW_MED_TEMP=55
 MED_TEMP=70
+MED_HIGH_TEMP=80
 HIGH_TEMP=90
 
 # Run sensors command and store the output
@@ -27,18 +29,32 @@ if [ -z "$CPU_TEMP" ]; then
   exit 0
 fi
 
-RESULT=$(echo "$CPU_TEMP < $MED_TEMP" | bc -l)
+RESULT=$(echo "$CPU_TEMP < $LOW_MED_TEMP" | bc -l)
 
 if [ "$RESULT" -eq 1 ]; then
   echo "1"
   exit 0
 fi
 
-RESULT=$(echo "$CPU_TEMP < $HIGH_TEMP" | bc -l)
+RESULT=$(echo "$CPU_TEMP < $MED_TEMP" | bc -l)
 
 if [ "$RESULT" -eq 1 ]; then
   echo "2"
   exit 0
 fi
 
-echo "3"
+RESULT=$(echo "$CPU_TEMP < $MED_HIGH_TEMP" | bc -l)
+
+if [ "$RESULT" -eq 1 ]; then
+  echo "3"
+  exit 0
+fi
+
+RESULT=$(echo "$CPU_TEMP < $HIGH_TEMP" | bc -l)
+
+if [ "$RESULT" -eq 1 ]; then
+  echo "4"
+  exit 0
+fi
+
+echo "5"

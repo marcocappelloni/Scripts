@@ -12,7 +12,9 @@ GPU_STRING="amdgpu"
 TEMP_LINE="edge:"
 NUM_LINES=4
 LOW_TEMP=45
+LOW_MED_TEMP=65
 MED_TEMP=80
+MED_HIGH_TEMP=90
 HIGH_TEMP=95
 
 # Run sensors command and store the output
@@ -25,18 +27,32 @@ if [ -z "$GPU_TEMP" ]; then
   exit 0
 fi
 
-RESULT=$(echo "$GPU_TEMP < $MED_TEMP" | bc -l)
+RESULT=$(echo "$GPU_TEMP < $LOW_MED_TEMP" | bc -l)
 
 if [ "$RESULT" -eq 1 ]; then
   echo "1"
   exit 0
 fi
 
-RESULT=$(echo "$GPU_TEMP < $HIGH_TEMP" | bc -l)
+RESULT=$(echo "$GPU_TEMP < $MED_TEMP" | bc -l)
 
 if [ "$RESULT" -eq 1 ]; then
   echo "2"
   exit 0
 fi
 
-echo "3"
+RESULT=$(echo "$GPU_TEMP < $MED_HIGH_TEMP" | bc -l)
+
+if [ "$RESULT" -eq 1 ]; then
+  echo "3"
+  exit 0
+fi
+
+RESULT=$(echo "$GPU_TEMP < $HIGH_TEMP" | bc -l)
+
+if [ "$RESULT" -eq 1 ]; then
+  echo "4"
+  exit 0
+fi
+
+echo "5"
