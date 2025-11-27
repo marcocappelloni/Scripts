@@ -51,16 +51,16 @@ msg "Installing base packages..."
 bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/1_base_packages.txt"
 
 # Install the packages needed for the windows managers that are inside the debian repository
-msg "Installing packages used by the window managers..."
-bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/2_wm_packages.txt"
+#msg "Installing packages used by the window managers..."
+#bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/2_wm_packages.txt"
 
 # Install common packages
 msg "Installing common packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/3_common_packages.txt"
+bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/2_common_packages.txt"
 
 # Install common packages
 msg "Installing last set of packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/4_apps_list.txt"
+bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/3_apps_list.txt"
 
 # Symlink the dotfiles using stow
 bash $SETUP_SCRIPTS/dotfiles.sh
@@ -68,16 +68,16 @@ bash $SETUP_SCRIPTS/dotfiles.sh
 msg "Installing my version of dmenu"
 install_my_suckless "dmenu"
 
-question "Do you want to install dwm? (Y/N)"
-read answer
-if [[ "$answer" =~ ^[Yy]$ ]]; then
-  msg "Installing my version of dwm"
-  install_my_suckless "dwm"
-  msg "Installing my version of slstatus"
-  install_my_suckless "slstatus"
-  msg "Installing my version of dwmblocks-async"
-  install_my_suckless "dwmblocks-async"
-fi
+#question "Do you want to install dwm? (Y/N)"
+#read answer
+#if [[ "$answer" =~ ^[Yy]$ ]]; then
+#  msg "Installing my version of dwm"
+#  install_my_suckless "dwm"
+#  msg "Installing my version of slstatus"
+#  install_my_suckless "slstatus"
+#  msg "Installing my version of dwmblocks-async"
+#  install_my_suckless "dwmblocks-async"
+#fi
 
 question "Do you want to install st? (Y/N)"
 read answer

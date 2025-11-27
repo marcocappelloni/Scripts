@@ -5,6 +5,7 @@ evolution-ews
 flameshot
 gcc
 gsimplecal
+kitty
 krita
 meld
 nodejs
@@ -15,4 +16,5 @@ qtpass
 redshift
 rofi
 simple-scan
+sxhkd
 vlc

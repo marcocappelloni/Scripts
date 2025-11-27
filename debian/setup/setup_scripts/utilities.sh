@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Colors
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-CYAN='\033[0;36m'
-NC='\033[0m'
+RED=$'\033[0;31m'
+GREEN=$'\033[0;32m'
+YELLOW=$'\033[0;33m'
+CYAN=$'\033[0;36m'
+NC=$'\033[0m'
 
 # Write a colored error message to the shell and exit from the script
 die() {
@@ -27,6 +27,13 @@ warning() {
 msg() { echo -e "${CYAN}$*${NC}"; }
 
 question() { echo -e "${GREEN}$*${NC}"; }
+
+response_with_prompt() {
+  local prompt="$1"
+  local var_name="$2"
+  read -p "${GREEN}${prompt}${NC}" input
+  declare -g "$var_name=$input"
+}
 
 # Function to check if a command exists
 command_exists() {
@@ -57,4 +64,11 @@ install_packages() {
     fi
   done
   msg "--- Installation process complete ---"
+}
+
+trimstring() {
+  s="${1}"
+  s="$(printf "${s}" | sed -z 's/^[[:space:]]*//')"
+  s="$(printf "${s}" | sed -z 's/[[:space:]]*$//')"
+  echo "${s}"
 }

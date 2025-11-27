@@ -1,8 +1,0 @@
-autotiling
-flameshot
-kitty
-i3-wm
-i3blocks
-make
-sxhkd
-
