@@ -40,12 +40,8 @@ option_found() {
   return 1
 }
 
-question "Did you clone the git repositories? (Y/N)"
-read answer
-if [[ ! "$answer" =~ ^[Yy]$ ]]; then
-  warning "Clone the git repositories using the script clone_repositories.sh before executing this script."
-  exit 0
-fi
+msg "Cloning git repositories..."
+$HOME/PersonalHome/Scripts/clone_repositories.sh
 
 # LOGGING AND CLEANUP
 
@@ -62,15 +58,15 @@ xdg-user-dirs-update
 
 # Install first group of packages, the essential one
 msg "Installing base packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "${BASE_PACKAGES[*]}"
+$SETUP_SCRIPTS/install_apps.sh "${BASE_PACKAGES[*]}"
 
 # Install common packages
 msg "Installing common packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "${COMMON_PACKAGES[*]}"
+$SETUP_SCRIPTS/install_apps.sh "${COMMON_PACKAGES[*]}"
 
 # Install common packages
 msg "Installing last set of packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "${APPS_LIST[*]}"
+$SETUP_SCRIPTS/install_apps.sh "${APPS_LIST[*]}"
 
 # Enable services
 msg "Enabling services"
@@ -91,29 +87,18 @@ fi
 
 if $(option_found "WINDOW_MANAGERS"); then
   # Choose and install window managers
-  bash $SETUP_SCRIPTS/WMS/window_managers.sh
+  $SETUP_SCRIPTS/WMS/window_managers.sh
 fi
 
 if $(option_found "DOTFILES"); then
   # Symlink the dotfiles using stow
-  bash $SETUP_SCRIPTS/dotfiles.sh
+  $SETUP_SCRIPTS/dotfiles.sh
 fi
 
 if $(option_found "DMENU"); then
   # Installing my version of dmenu
   install_my_suckless "dmenu"
 fi
-
-#question "Do you want to install dwm? (Y/N)"
-#read answer
-#if [[ "$answer" =~ ^[Yy]$ ]]; then
-#  msg "Installing my version of dwm"
-#  install_my_suckless "dwm"
-#  msg "Installing my version of slstatus"
-#  install_my_suckless "slstatus"
-#  msg "Installing my version of dwmblocks-async"
-#  install_my_suckless "dwmblocks-async"
-#fi
 
 if $(option_found "ST"); then
   install_my_suckless "st"
@@ -128,70 +113,70 @@ fi
 if $(option_found "MY_APPS"); then
   # simlink myapps
   msg "Creating symlinks for My Apps"
-  bash $MY_APPS/install_my_scripts.sh
+  $MY_APPS/install_my_scripts.sh
 fi
 
 if $(option_found "AUDIO"); then
-  bash $SETUP_SCRIPTS/audio.sh
+  $SETUP_SCRIPTS/audio.sh
 fi
 
 if $(option_found "BLUETOOTH"); then
-  bash $SETUP_SCRIPTS/bluetooth.sh
+  $SETUP_SCRIPTS/bluetooth.sh
 fi
 
 if $(option_found "FLATPAK"); then
-  bash $SETUP_SCRIPTS/flatpak.sh
+  $SETUP_SCRIPTS/flatpak.sh
 fi
 
 if $(option_found "LIGHTDM"); then
-  bash $SETUP_SCRIPTS/lightdm.sh
+  $SETUP_SCRIPTS/lightdm.sh
 fi
 
 if $(option_found "NERD_FONTS"); then
-  bash $SETUP_SCRIPTS/nerdfonts.sh
+  $SETUP_SCRIPTS/nerdfonts.sh
 fi
 
 if $(option_found "PICOM"); then
-  bash $SETUP_SCRIPTS/picom.sh
+  $SETUP_SCRIPTS/picom.sh
 fi
 
 if $(option_found "PRINTERS"); then
-  bash $SETUP_SCRIPTS/printers.sh
+  $SETUP_SCRIPTS/printers.sh
 fi
 
 if $(option_found "SNAP"); then
-  bash $SETUP_SCRIPTS/snap.sh
-  bash $SETUP_SCRIPTS/snap_packages.sh
+  $SETUP_SCRIPTS/snap.sh
+  $SETUP_SCRIPTS/snap_packages.sh
 fi
 
 if $(option_found "WIFI_APPLET_SYSTRAY"); then
-  bash $SETUP_SCRIPTS/wifi_applet_systray.sh
+  $SETUP_SCRIPTS/wifi_applet_systray.sh
 fi
 
 if $(option_found "BASH_OPTION"); then
-  bash $DEBIAN_BASE/bash/bash_options.sh
+  $DEBIAN_BASE/bash/bash_options.sh
 fi
 
 if $(option_found "CHEAT_SHEET"); then
-  bash $SETUP_SCRIPTS/cheat_sheet_client.sh
+  $SETUP_SCRIPTS/cheat_sheet_client.sh
 fi
 
 if $(option_found "APPIMAGE"); then
-  bash $SETUP_SCRIPTS/install_appimage.sh
+  $SETUP_SCRIPTS/install_appimage.sh
 fi
 
 if $(option_found "GEANY"); then
-  bash $SETUP_SCRIPTS/geany_install.sh
+  $SETUP_SCRIPTS/geany_install.sh
 fi
 
 if $(option_found "LIBREOFFICE"); then
-  bash $SETUP_SCRIPTS/libreoffice.sh
+  $SETUP_SCRIPTS/libreoffice.sh
 fi
 
 if $(option_found "YAZI"); then
-  bash $SETUP_SCRIPTS/yazi.sh
+  $SETUP_SCRIPTS/yazi.sh
 fi
 
 if $(option_found "VIRTUAL_MACHINES"); then
-  bash $SETUP_SCRIPTS/virtual_machines.sh
+  $SETUP_SCRIPTS/virtual_machines.sh
 fi

@@ -57,18 +57,16 @@ msg "Array chosen: ${WM_CHOSEN[*]}"
 for INDEX in ${WM_CHOSEN[*]}; do
   case "${WM_LIST[$((INDEX - 1))]}" in
   "DWM")
-    #bash ./install_dwm.sh
-    echo "Install DWM"
+    $SCRIPT_PATH/install_dwm.sh
     ;;
   "I3WM")
-    #bash ./install_i3.sh
-    echo "Install I3WM"
+    $SCRIPT_PATH/install_i3.sh
     ;;
   "QTILE")
-    echo "Install qtile"
+    msg "Install fake qtile"
     ;;
   *)
-    echo "WM not recognised"
+    error "WM not recognised"
     ;;
   esac
 done

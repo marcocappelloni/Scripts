@@ -21,5 +21,5 @@ msg "Printing and scanning services installed."
 question "Do you want to install driver and utility for an epson printer? (Y/N):"
 read answer
 if [[ ! "$answer" =~ ^[Y/y]$ ]]; then
-  bash $SCRIPT_PATH/epson.sh
+  $SCRIPT_PATH/epson.sh
 fi

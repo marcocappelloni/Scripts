@@ -1,7 +1,6 @@
 #!/bin/bash
 
 SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/setup_scripts"
-SOFTWARE_LISTS_FILES="$HOME/PersonalHome/Scripts/debian/setup/software_lists/"
 DEBIAN_BASE="$HOME/PersonalHome/Scripts/debian"
 MY_APPS="$HOME/PersonalHome/Scripts/MyApps"
 TEMP_DIR="/tmp/setup_$$"

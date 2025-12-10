@@ -11,7 +11,7 @@ msg "Installing Yazi..."
 # First phase
 if [[ "$CURRENT_STATE" -lt 1 ]]; then
 
-  bash $STATUS_FOLDER/set_status.sh 1
+  $STATUS_FOLDER/set_status.sh 1
 
   question "Would you like to update the system and install the dependencies? (y/n)"
   read response
@@ -42,7 +42,7 @@ fi
 # Second phase
 if [[ "$CURRENT_STATE" -eq 1 ]]; then
 
-  bash $STATUS_FOLDER/reset_status.sh
+  $STATUS_FOLDER/reset_status.sh
 
   #BUILD FROM SOURCE
   # Clone the repository and build Yazi
