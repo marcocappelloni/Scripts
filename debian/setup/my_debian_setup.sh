@@ -24,6 +24,7 @@ OPTIONS_LIST=(
   PRINTERS
   SNAP
   #"ST"
+  VIRTUAL_MACHINES
   WIFI_APPLET_SYSTRAY
   WINDOW_MANAGERS
   YAZI
@@ -55,15 +56,6 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 # By using EXIT, it sets up a cleanup routine that runs no matter how the script ends
 # whether it finishes successfully, encounters an error, or is interrupted (e.g., by pressing Ctrl+C)
 trap "rm -rf $TEMP_DIR" EXIT
-
-#----------------------------------------------------------------------------------------------------------------------------------
-#msg "Downloading display manager installer..."
-#wget -O "$TEMP_DIR/install_lightdm.sh" "https://codeberg.org/justaguylinux/butterscripts/raw/branch/main/system/install_lightdm.sh"
-#chmod +x "$TEMP_DIR/install_lightdm.sh"
-#msg "Running display manager installer..."
-## Run in current terminal session to preserve interactivity
-#bash "$TEMP_DIR/install_lightdm.sh"
-#----------------------------------------------------------------------------------------------------------------------------------
 
 # Create the default user directories
 xdg-user-dirs-update
@@ -200,4 +192,6 @@ if $(option_found "YAZI"); then
   bash $SETUP_SCRIPTS/yazi.sh
 fi
 
-QEMU
+if $(option_found "VIRTUAL_MACHINES"); then
+  bash $SETUP_SCRIPTS/virtual_machines.sh
+fi
