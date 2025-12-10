@@ -1,12 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install Flatpak? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 msg "Installing Flatpak..."
 sudo apt install flatpak
@@ -16,4 +11,7 @@ msg "Adding the remote directory of the flathub repository"
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 warning "Before using Flatpak you will need to reboot the system."
+warning "Push enter to continue..."
+read answer
+
 msg "Flatpak installed."

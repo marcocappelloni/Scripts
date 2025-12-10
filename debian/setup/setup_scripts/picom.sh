@@ -1,12 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install picom? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 # Check if picom is already installed
 if command -v picom &>/dev/null; then
@@ -32,7 +27,7 @@ sudo apt install -y \
   libxcb-render0-dev libxcb-render-util0-dev libxcb-shape0-dev \
   libxcb-util-dev libxcb-xfixes0-dev libxext-dev meson ninja-build uthash-dev
 
-git clone https://github.com/FT-Labs/picom $HOME/packages/picom
+git clone https://github.com/r0-zero/picom.git $HOME/packages/picom
 cd $HOME/packages/picom
 meson setup --buildtype=release build
 ninja -C build

@@ -3,18 +3,13 @@
 # Author: Marco Cappelloni
 # Script to install Geany with the main plugins and some colorschemes
 
-source ./utilities.sh
-
-question "Would you like to install Geany? (Y/N)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 msg "Installing Geany"
 
 # Update and upgrade the system
-sudo apt update && sudo apt upgrade
+# sudo apt update && sudo apt upgrade
 
 # Install Geany
 sudo apt install -y geany

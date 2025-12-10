@@ -1,12 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install Yazi? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 # Setup the status for the script because it could need a logout
 STATUS_FOLDER="$HOME/PersonalHome/Scripts/status"
@@ -51,7 +46,7 @@ if [[ "$CURRENT_STATE" -eq 1 ]]; then
 
   #BUILD FROM SOURCE
   # Clone the repository and build Yazi
-  msg "Cloning and building yasi..."
+  msg "Cloning and building yazi..."
   git clone https://github.com/sxyazi/yazi.git
   cd yazi
   cargo build --release --locked

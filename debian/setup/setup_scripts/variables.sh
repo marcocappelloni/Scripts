@@ -1,0 +1,82 @@
+#!/bin/bash
+
+SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/setup_scripts"
+SOFTWARE_LISTS_FILES="$HOME/PersonalHome/Scripts/debian/setup/software_lists/"
+DEBIAN_BASE="$HOME/PersonalHome/Scripts/debian"
+MY_APPS="$HOME/PersonalHome/Scripts/MyApps"
+TEMP_DIR="/tmp/setup_$$"
+LOG_FILE="$HOME/setup.log"
+
+BASE_PACKAGES=(
+  build-essential
+  numlockx
+  xbacklight
+  xbindkeys
+  xinput
+  xinit
+  xorg
+  xorg-dev
+  xserver-xorg
+  xvkbd
+  x11-xserver-utils
+)
+
+COMMON_PACKAGES=(
+  arandr
+  acpi
+  acpid
+  avahi-daemon
+  bat
+  btop
+  curl
+  eza
+  fastfetch
+  feh
+  fonts-recommended
+  fonts-font-awesome
+  fonts-terminus
+  fzf
+  gcc
+  gufw
+  libnotify-bin
+  libnotify-dev
+  lsd
+  lxappearance
+  lxrandr
+  make
+  network-manager
+  network-manager-gnome
+  papirus-icon-theme
+  policykit-1-gnome
+  redshift
+  rsync
+  stow
+  trash-cli
+  unzip
+  vim-runtime
+  xdotool
+  xfce4-power-manager
+)
+
+APPS_LIST=(
+  chromium
+  dunst
+  evolution
+  evolution-ews
+  flameshot
+  gcc
+  gsimplecal
+  kitty
+  krita
+  meld
+  nodejs
+  okular
+  pass
+  pcmanfm
+  qtpass
+  redshift
+  rofi
+  simple-scan
+  sxhkd
+  vlc
+)

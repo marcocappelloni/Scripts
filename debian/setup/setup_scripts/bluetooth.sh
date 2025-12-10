@@ -1,12 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install Bluetooth services? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 msg "Installing Bluetooth services..."
 sudo apt install -y bluez blueman bluez-tools pulseaudio-module-bluetooth || die "Failed to install bluetooth"

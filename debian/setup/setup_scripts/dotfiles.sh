@@ -1,8 +1,9 @@
 #!/bin/bash
 
-source ./utilities.sh
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
-question "Would you like to activate the dotfiles creating the link with stow? (y/n)"
+question "Would you like to activate the process to create the symbolic link to my dotfiles with stow? (y/n)"
 read response
 if [[ ! "$response" =~ ^[Yy]$ ]]; then
   exit 0
@@ -97,6 +98,13 @@ done
 msg "---"
 msg "Backup process finished."
 msg "Original files/directories have been moved to: **$BACKUP_DIR**"
+
+question "Is everything ok to execute the stow command? (y/n)"
+read response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  cd "$DOTFILES_DIR"
+  stow .
+fi
 
 # Change back to the home directory for safety
 cd "$HOME"

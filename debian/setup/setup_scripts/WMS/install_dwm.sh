@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ../utilities.sh
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/../utilities.sh
 
 msg "Installing my version of dwm"
 install_my_suckless "dwm"

@@ -1,12 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install the wifi applet for the systray in the status bar? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 msg "Installing the wifi applet..."
 sudo apt install network-manager-gnome

@@ -2,13 +2,8 @@
 
 # Bash script to install the app images
 
-source ./utilities.sh
-
-question "Would you like to install appimages? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 # Directories used
 PACKAGES_DIR=$HOME/packages

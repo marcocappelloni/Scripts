@@ -1,12 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install Lightdm? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 service_active_and_enabled() {
   # Check if service is active and enabled
@@ -19,6 +14,7 @@ if service_active_and_enabled; then
 fi
 
 msg "Installing Lightdm..."
-sudo apt install -y lightdm lightdm-settings slick-greeter
+sudo apt install -y lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings
 sudo systemctl enable lightdm
-msg "Lightdm installed."
+sudo systemctl set-default graphical.target
+msg "Lightdm installed and enabled."

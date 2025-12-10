@@ -1,12 +1,8 @@
 #!/bin/bash
 
-source ./utilities.sh
+# Script to setup the bash shell options
 
-question "Would you like to setup the bash shell? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+source $HOME/PersonalHome/Scripts/debian/setup/setup_scripts/utilities.sh
 
 msg "Setting up the bash shell..."
 sudo apt install lsd
@@ -29,14 +25,13 @@ export VISUAL='nvim'
 shopt -s cdspell # autocorrects cd misspellings
 shopt -s cmdhist # save multi-line commands in history as single line
 shopt -s dotglob # includes filenames beginning with a '.' in the results of filename expansion. 
-shopt -s histappend     # do not overwrite history
 shopt -s expand_aliases # expand aliases
 
 # FZF
 show_file_or_dir_preview="if [ -d {} ]; then tree -L 2 {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS='--layout=reverse --border=bold --border=rounded --margin=3% --color=dark --color=border:#225577 --preview="bat --color=always {}"'
+export FZF_DEFAULT_OPTS='--layout=reverse --border=bold --border=rounded --margin=3% --color=dark --color=border:#943B2F --preview="bat --color=always {}"'
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_CTRL_R_OPTS="--style minimal --no-sort --no-preview --info inline"

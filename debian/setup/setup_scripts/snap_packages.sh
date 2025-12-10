@@ -1,16 +1,12 @@
 #!/bin/bash
 
-source ./utilities.sh
-
-question "Would you like to install the snap packages? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 msg "Installing Snap packages"
 
 # Bookmarks manager
+msg "Installing raindrop..."
 sudo snap install raindrop
 # Pomodoro timer
 # sudo snap install pomatez

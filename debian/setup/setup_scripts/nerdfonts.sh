@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 FONT_VERSION="v3.4.0"
 FONTS_DIR="$HOME/.local/share/fonts"
@@ -15,12 +16,6 @@ cleanup() {
 
 # Set the trap for SIGINT (Ctrl+C)
 trap cleanup SIGINT
-
-question "Would you like to install the Nerd Fonts? (y/n)"
-read response
-if [[ ! "$response" =~ ^[Yy]$ ]]; then
-  exit 0
-fi
 
 # Check if unzip is installed; if not, install it
 if ! command_exists unzip; then
@@ -41,6 +36,7 @@ mkdir -p "$TEMP_DIR"
 # Array of font names
 fonts=(
   "CascadiaCode"
+  "DejaVuSansMono"
   "FiraCode"
   "Hack"
   "Inconsolata"

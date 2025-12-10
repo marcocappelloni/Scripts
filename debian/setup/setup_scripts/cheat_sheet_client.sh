@@ -1,6 +1,7 @@
 #!/bin/bash
 
-source ./utilities.sh
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
 
 msg "Installing cheat sheet client (cht.sh)"
 sudo apt install curl rlwrap

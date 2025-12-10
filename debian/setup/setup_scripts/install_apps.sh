@@ -1,51 +1,37 @@
 #!/bin/bash
-# Script to install the applications passed through a text file specified
+# Script to install the applications passed through an array passed
 # as argument when you call the script.
-# This script is called by base.sh
 
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
+
+APP_LIST=($1)
 # Array to store applications that need to be installed
 APPS_TO_INSTALL=()
-APP_LIST_FILE="$1"
 
-source "./utilities.sh"
-
-# UPDATE THE SYSTEM
 question "Do you want to update the system?"
 read answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then
   sudo apt update && sudo apt upgrade -y && sudo apt autoclean
 fi
 
-# echo "Insert the file with the list of the apps"
-# read APP_LIST_FILE
+for app in ${APP_LIST[*]}; do
 
-# Check if the apps.txt file exists.
-if [[ ! -f "$APP_LIST_FILE" ]]; then
-  die "$APP_LIST_FILE file not found."
-fi
-
-# Read applications from the file and check if they are installed.
-while IFS= read -r app; do
-  app=$(echo "$app" | tr -d '[:space:]') # Trim whitespace
-
-  # Skip empty lines
-  if [[ -z "$app" ]]; then
-    continue
-  fi
-
-  if ! is_in_repository "$app"; then
+  check=$(is_in_repository "$app")
+  if [[ ! $check -eq 0 ]]; then
     warning "$app is not in the repository"
     continue
   fi
 
-  if is_installed "$app"; then
+  check=$(is_installed "$app")
+  if [[ ! $check -eq 0 ]]; then
     warning "$app is already installed."
     continue
   fi
 
   APPS_TO_INSTALL+=("$app")
 
-done <"$APP_LIST_FILE"
+done
 
 if [[ ${#APPS_TO_INSTALL[@]} -eq 0 ]]; then
   warning "There are no apps to install"
@@ -53,7 +39,7 @@ if [[ ${#APPS_TO_INSTALL[@]} -eq 0 ]]; then
 fi
 
 # Install the applications that are not already installed.
-msg "Installing the following applications: ${APPS_TO_INSTALL[*]}"
+msg "Installing the following applications: \n${APPS_TO_INSTALL[*]}"
 question "Procede? (Y/N)"
 read answer
 if [[ "$answer" =~ ^[Yy]$ ]]; then

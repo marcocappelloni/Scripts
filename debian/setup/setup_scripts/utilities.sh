@@ -38,21 +38,24 @@ response_with_prompt() {
 # Function to check if a command exists
 command_exists() {
   command -v "$1" >/dev/null 2>&1
+  echo $?
 }
 
 # Check if an application is installed
 is_installed() {
   dpkg -s "$1" &>/dev/null
+  echo $?
 }
 
 # Check if an app is in the repository
 is_in_repository() {
   apt-cache pkgnames | grep -q "$1"
+  echo $?
 }
 
 # Install a list of apps passed as arguments
 install_packages() {
-  msg "--- Starting installation process ---"
+  msg "--- Starting installation package list ---"
   # "$@" expands to all positional parameters passed to the function,
   # safely quoted as separate words (e.g., "$1" "$2" "$3").
   for app in "$@"; do
@@ -66,9 +69,35 @@ install_packages() {
   msg "--- Installation process complete ---"
 }
 
+install_my_suckless() {
+  local package=$1
+  msg "Installing my version of ${package}"
+  cd $HOME/packages/suckless/$1
+  rm ./config.h
+  sudo make install
+  cd -
+  msg "${package} installed"
+}
+
 trimstring() {
   s="${1}"
   s="$(printf "${s}" | sed -z 's/^[[:space:]]*//')"
   s="$(printf "${s}" | sed -z 's/[[:space:]]*$//')"
   echo "${s}"
+}
+
+# Usage:
+# array=(a b c d)
+# array=($(remove_element "b" "${array[@]}"))
+remove_element() {
+  local target="$1"
+  shift
+  local arr=("$@")
+  for i in "${!arr[@]}"; do
+    if [[ "${arr[i]}" == "$target" ]]; then
+      unset 'arr[i]'
+      break
+    fi
+  done
+  echo "${arr[@]}"
 }

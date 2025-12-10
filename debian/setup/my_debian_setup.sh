@@ -1,13 +1,43 @@
 #!/bin/bash
 
-SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/setup_scripts"
-SOFTWARE_LISTS_FILES="$HOME/PersonalHome/Scripts/debian/setup/software_lists/"
-DEBIAN_BASE="$HOME/PersonalHome/Scripts/debian"
-MY_APPS="$HOME/PersonalHome/Scripts/MyApps"
-TEMP_DIR="/tmp/setup_$$"
-LOG_FILE="$HOME/setup.log"
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/setup_scripts/variables.sh
+source $SCRIPT_PATH/setup_scripts/utilities.sh
 
-source $SETUP_SCRIPTS/utilities.sh
+# Comment the lines that you don't want to install
+OPTIONS_LIST=(
+  APPIMAGE
+  AUDIO
+  BASH_OPTION
+  BLUETOOTH
+  BRAVE
+  CHEAT_SHEET
+  DMENU
+  DOTFILES
+  FLATPAK
+  GEANY
+  LIBREOFFICE
+  LIGHTDM
+  MY_APPS
+  NERD_FONTS
+  PICOM
+  PRINTERS
+  SNAP
+  #"ST"
+  WIFI_APPLET_SYSTRAY
+  WINDOW_MANAGERS
+  YAZI
+)
+
+option_found() {
+  for OPT in ${OPTIONS_LIST[*]}; do
+    if [[ "$OPT" == "$1" ]]; then
+      return 0
+    fi
+  done
+
+  return 1
+}
 
 question "Did you clone the git repositories? (Y/N)"
 read answer
@@ -26,14 +56,6 @@ exec > >(tee -a "$LOG_FILE") 2>&1
 # whether it finishes successfully, encounters an error, or is interrupted (e.g., by pressing Ctrl+C)
 trap "rm -rf $TEMP_DIR" EXIT
 
-install_my_suckless() {
-  local package=$1
-  cd $HOME/packages/suckless/$1
-  rm ./config.h
-  sudo make install
-  cd -
-}
-
 #----------------------------------------------------------------------------------------------------------------------------------
 #msg "Downloading display manager installer..."
 #wget -O "$TEMP_DIR/install_lightdm.sh" "https://codeberg.org/justaguylinux/butterscripts/raw/branch/main/system/install_lightdm.sh"
@@ -48,57 +70,15 @@ xdg-user-dirs-update
 
 # Install first group of packages, the essential one
 msg "Installing base packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/1_base_packages.txt"
-
-# Install the packages needed for the windows managers that are inside the debian repository
-#msg "Installing packages used by the window managers..."
-#bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/2_wm_packages.txt"
+bash $SETUP_SCRIPTS/install_apps.sh "${BASE_PACKAGES[*]}"
 
 # Install common packages
 msg "Installing common packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/2_common_packages.txt"
+bash $SETUP_SCRIPTS/install_apps.sh "${COMMON_PACKAGES[*]}"
 
 # Install common packages
 msg "Installing last set of packages..."
-bash $SETUP_SCRIPTS/install_apps.sh "$SOFTWARE_LISTS_FILES/3_apps_list.txt"
-
-# Symlink the dotfiles using stow
-bash $SETUP_SCRIPTS/dotfiles.sh
-
-msg "Installing my version of dmenu"
-install_my_suckless "dmenu"
-
-#question "Do you want to install dwm? (Y/N)"
-#read answer
-#if [[ "$answer" =~ ^[Yy]$ ]]; then
-#  msg "Installing my version of dwm"
-#  install_my_suckless "dwm"
-#  msg "Installing my version of slstatus"
-#  install_my_suckless "slstatus"
-#  msg "Installing my version of dwmblocks-async"
-#  install_my_suckless "dwmblocks-async"
-#fi
-
-question "Do you want to install st? (Y/N)"
-read answer
-if [[ "$answer" =~ ^[Yy]$ ]]; then
-  msg "Installing my version of st"
-  install_my_suckless "st"
-fi
-
-# installing brave software
-msg "Installing brave browser"
-curl -fsS https://dl.brave.com/install.sh | sh
-
-# simlink myapps
-msg "Creating symlinks for My Apps"
-bash $MY_APPS/install_my_scripts.sh
-
-# install geany
-bash $SETUP_SCRIPTS/geany_install.sh
-
-# install libreoffice
-bash $SETUP_SCRIPTS/libreoffice.sh
+bash $SETUP_SCRIPTS/install_apps.sh "${APPS_LIST[*]}"
 
 # Enable services
 msg "Enabling services"
@@ -113,19 +93,111 @@ if [[ ! "$answer" =~ ^[Y/y]$ ]]; then
   ln -s /usr/bin/batcat $HOME/.local/bin/bat
 fi
 
-# Install additional scripts
-bash $SETUP_SCRIPTS/audio.sh
-bash $SETUP_SCRIPTS/bluetooth.sh
-bash $SETUP_SCRIPTS/flatpak.sh
-bash $SETUP_SCRIPTS/lightdm.sh
-bash $SETUP_SCRIPTS/nerdfonts.sh
-bash $SETUP_SCRIPTS/picom.sh
-bash $SETUP_SCRIPTS/printers.sh
-bash $SETUP_SCRIPTS/snap.sh
-bash $SETUP_SCRIPTS/wifi_applet_systray.sh
-bash $DEBIAN_BASE/bash/bash_options.sh
-bash $SETUP_SCRIPTS/cheat_sheet_client.sh
-bash $SETUP_SCRIPTS/install_appimage.sh
-bash $SETUP_SCRIPTS/snap_packages.sh
+# ###############################################
+# INSTALL EXTRA TOOLS AND CONFIGURATIONS
+# ###############################################
 
-bash $SETUP_SCRIPTS/yazi.sh
+if $(option_found "WINDOW_MANAGERS"); then
+  # Choose and install window managers
+  bash $SETUP_SCRIPTS/WMS/window_managers.sh
+fi
+
+if $(option_found "DOTFILES"); then
+  # Symlink the dotfiles using stow
+  bash $SETUP_SCRIPTS/dotfiles.sh
+fi
+
+if $(option_found "DMENU"); then
+  # Installing my version of dmenu
+  install_my_suckless "dmenu"
+fi
+
+#question "Do you want to install dwm? (Y/N)"
+#read answer
+#if [[ "$answer" =~ ^[Yy]$ ]]; then
+#  msg "Installing my version of dwm"
+#  install_my_suckless "dwm"
+#  msg "Installing my version of slstatus"
+#  install_my_suckless "slstatus"
+#  msg "Installing my version of dwmblocks-async"
+#  install_my_suckless "dwmblocks-async"
+#fi
+
+if $(option_found "ST"); then
+  install_my_suckless "st"
+fi
+
+if $(option_found "BRAVE"); then
+  # installing brave software
+  msg "Installing brave browser"
+  curl -fsS https://dl.brave.com/install.sh | sh
+fi
+
+if $(option_found "MY_APPS"); then
+  # simlink myapps
+  msg "Creating symlinks for My Apps"
+  bash $MY_APPS/install_my_scripts.sh
+fi
+
+if $(option_found "AUDIO"); then
+  bash $SETUP_SCRIPTS/audio.sh
+fi
+
+if $(option_found "BLUETOOTH"); then
+  bash $SETUP_SCRIPTS/bluetooth.sh
+fi
+
+if $(option_found "FLATPAK"); then
+  bash $SETUP_SCRIPTS/flatpak.sh
+fi
+
+if $(option_found "LIGHTDM"); then
+  bash $SETUP_SCRIPTS/lightdm.sh
+fi
+
+if $(option_found "NERD_FONTS"); then
+  bash $SETUP_SCRIPTS/nerdfonts.sh
+fi
+
+if $(option_found "PICOM"); then
+  bash $SETUP_SCRIPTS/picom.sh
+fi
+
+if $(option_found "PRINTERS"); then
+  bash $SETUP_SCRIPTS/printers.sh
+fi
+
+if $(option_found "SNAP"); then
+  bash $SETUP_SCRIPTS/snap.sh
+  bash $SETUP_SCRIPTS/snap_packages.sh
+fi
+
+if $(option_found "WIFI_APPLET_SYSTRAY"); then
+  bash $SETUP_SCRIPTS/wifi_applet_systray.sh
+fi
+
+if $(option_found "BASH_OPTION"); then
+  bash $DEBIAN_BASE/bash/bash_options.sh
+fi
+
+if $(option_found "CHEAT_SHEET"); then
+  bash $SETUP_SCRIPTS/cheat_sheet_client.sh
+fi
+
+if $(option_found "APPIMAGE"); then
+  bash $SETUP_SCRIPTS/install_appimage.sh
+fi
+
+if $(option_found "GEANY"); then
+  bash $SETUP_SCRIPTS/geany_install.sh
+fi
+
+if $(option_found "LIBREOFFICE"); then
+  bash $SETUP_SCRIPTS/libreoffice.sh
+fi
+
+if $(option_found "YAZI"); then
+  bash $SETUP_SCRIPTS/yazi.sh
+fi
+
+QEMU
