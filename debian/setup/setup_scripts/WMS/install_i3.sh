@@ -10,6 +10,4 @@ I3_PACKAGES=(
 )
 
 msg "Installing i3WM packages"
-for package in ${I3_PACKAGES[*]}; do
-  install_packages "${I3_PACKAGES[@]}"
-done
+install_packages "${I3_PACKAGES[@]}"

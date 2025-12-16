@@ -46,7 +46,6 @@ COMMON_PACKAGES=(
   network-manager
   network-manager-gnome
   papirus-icon-theme
-  policykit-1-gnome
   redshift
   rsync
   stow

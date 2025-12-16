@@ -72,11 +72,11 @@ install_packages() {
 install_my_suckless() {
   local package=$1
   msg "Installing my version of ${package}"
-  cd $HOME/packages/suckless/$1
+  cd $HOME/packages/suckless/$package
   rm ./config.h
   sudo make install
   cd -
-  msg "${package} installed"
+  msg "Installed ${package}"
 }
 
 trimstring() {

@@ -75,15 +75,20 @@ sudo systemctl enable acpid
 
 #Fixing bat
 question "Is bat in any of the bin directories? (Y/N):"
-question "$(whereis bat)"
+question "$(whereis batcat)"
 read answer
-if [[ ! "$answer" =~ ^[Y/y]$ ]]; then
+if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+  mkdir -p $HOME/.local/bin
   ln -s /usr/bin/batcat $HOME/.local/bin/bat
 fi
 
 # ###############################################
 # INSTALL EXTRA TOOLS AND CONFIGURATIONS
 # ###############################################
+
+if $(option_found "LIGHTDM"); then
+  $SETUP_SCRIPTS/lightdm.sh
+fi
 
 if $(option_found "WINDOW_MANAGERS"); then
   # Choose and install window managers
@@ -126,10 +131,6 @@ fi
 
 if $(option_found "FLATPAK"); then
   $SETUP_SCRIPTS/flatpak.sh
-fi
-
-if $(option_found "LIGHTDM"); then
-  $SETUP_SCRIPTS/lightdm.sh
 fi
 
 if $(option_found "NERD_FONTS"); then

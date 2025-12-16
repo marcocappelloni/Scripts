@@ -24,7 +24,7 @@ for app in ${APP_LIST[*]}; do
   fi
 
   check=$(is_installed "$app")
-  if [[ ! $check -eq 0 ]]; then
+  if [[ $check -eq 0 ]]; then
     warning "$app is already installed."
     continue
   fi
