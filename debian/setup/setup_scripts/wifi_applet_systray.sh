@@ -16,26 +16,28 @@ for i in "${!selections[@]}"; do
 done
 read -rp "Selection: " selection
 
-autostart_path=""
+FILE=""
 
 case "$selection" in
 1)
-  autostart_path="~/.dwm/autostart.sh"
+  FILE="$HOME/.dwm/autostart.sh"
   ;;
 2)
-  autostart_path="~/.xinitrc"
+  FILE="$HOME/.xinitrc"
   ;;
 *)
   die "Wrong selection!"
   ;;
 esac
 
-msg "The applet call will be added to: $autostart_path"
+msg "The applet call will be added to: $FILE"
 
-cat <<EOF >>$autostart_path
+LINE="nm-applet &"
 
-nm-applet &
+# Ensure the file exists
+touch "$FILE"
 
-EOF
+# Only append if the line isn't already there
+grep -qxF "$LINE" "$FILE" || echo "$LINE" >>"$FILE"
 
 msg "Wifi applet installed."

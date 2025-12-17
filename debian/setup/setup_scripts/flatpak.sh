@@ -4,7 +4,7 @@ SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/utilities.sh
 
 msg "Installing Flatpak..."
-sudo apt install flatpak
+sudo apt install flatpak -y
 # sudo apt install gnome-software-plugin-flatpak # install this package only if we are in gnome
 
 msg "Adding the remote directory of the flathub repository"
