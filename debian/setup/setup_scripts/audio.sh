@@ -4,7 +4,7 @@ SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/utilities.sh
 
 msg "Installing audio utilities..."
-sudo apt install amixer pulseaudio pulseaudio-utils alsa-utils pavucontrol pamixer volumeicon
+sudo apt install pulseaudio pulseaudio-utils alsa-utils pavucontrol pamixer volumeicon-alsa
 warning "configure volumeicon adding pulseaudio with the preference menu"
 warning "Press enter to continue..."
 read answer

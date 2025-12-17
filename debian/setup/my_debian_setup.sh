@@ -95,11 +95,6 @@ if $(option_found "WINDOW_MANAGERS"); then
   $SETUP_SCRIPTS/WMS/window_managers.sh
 fi
 
-if $(option_found "DOTFILES"); then
-  # Symlink the dotfiles using stow
-  $SETUP_SCRIPTS/dotfiles.sh
-fi
-
 if $(option_found "DMENU"); then
   # Installing my version of dmenu
   install_my_suckless "dmenu"
@@ -180,4 +175,9 @@ fi
 
 if $(option_found "VIRTUAL_MACHINES"); then
   $SETUP_SCRIPTS/virtual_machines.sh
+fi
+
+if $(option_found "DOTFILES"); then
+  # Symlink the dotfiles using stow
+  $SETUP_SCRIPTS/dotfiles.sh
 fi

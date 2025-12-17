@@ -31,7 +31,8 @@ shopt -s expand_aliases # expand aliases
 show_file_or_dir_preview="if [ -d {} ]; then tree -L 2 {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 
 # Open in tmux popup if on tmux, otherwise use --height mode
-export FZF_DEFAULT_OPTS='--layout=reverse --border=bold --border=rounded --margin=3% --color=dark --color=border:#943B2F --preview="bat --color=always {}"'
+
+export FZF_DEFAULT_OPTS='--exact --layout=reverse --border=bold --border=rounded --margin=3% --color=dark --color=border:#943B2F --preview="bat --color=always {}"'
 
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
 export FZF_CTRL_R_OPTS="--style minimal --no-sort --no-preview --info inline"
@@ -62,7 +63,8 @@ fi
 
 # Set the vi keybindings
 # set -o 
-. "$HOME/.cargo/env"
+
+#. "$HOME/.cargo/env"
 EOF
 
 msg "Bash shell set up"
