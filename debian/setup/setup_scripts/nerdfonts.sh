@@ -69,7 +69,7 @@ for font in "${fonts[@]}"; do
   fi
 
   msg "Installing font: $font"
-  wget --timeout=30 -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/download/$FONT_VERSION}/${font}.zip" -P "$TEMP_DIR"
+  wget --timeout=30 -q --show-progress "https://github.com/ryanoasis/nerd-fonts/releases/download/${FONT_VERSION}/${font}.zip" -P "$TEMP_DIR"
   if [ $? -ne 0 ]; then
     error "Failed to download font: $font"
     continue

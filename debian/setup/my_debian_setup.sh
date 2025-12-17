@@ -86,13 +86,24 @@ fi
 # INSTALL EXTRA TOOLS AND CONFIGURATIONS
 # ###############################################
 
-if $(option_found "LIGHTDM"); then
-  $SETUP_SCRIPTS/lightdm.sh
+if $(option_found "AUDIO"); then
+  $SETUP_SCRIPTS/audio.sh
 fi
 
-if $(option_found "WINDOW_MANAGERS"); then
-  # Choose and install window managers
-  $SETUP_SCRIPTS/WMS/window_managers.sh
+if $(option_found "BLUETOOTH"); then
+  $SETUP_SCRIPTS/bluetooth.sh
+fi
+
+if $(option_found "NERD_FONTS"); then
+  $SETUP_SCRIPTS/nerdfonts.sh
+fi
+
+if $(option_found "PICOM"); then
+  $SETUP_SCRIPTS/picom.sh
+fi
+
+if $(option_found "PRINTERS"); then
+  $SETUP_SCRIPTS/printers/common.sh
 fi
 
 if $(option_found "DMENU"); then
@@ -116,33 +127,22 @@ if $(option_found "MY_APPS"); then
   $MY_APPS/install_my_scripts.sh
 fi
 
-if $(option_found "AUDIO"); then
-  $SETUP_SCRIPTS/audio.sh
-fi
-
-if $(option_found "BLUETOOTH"); then
-  $SETUP_SCRIPTS/bluetooth.sh
-fi
-
 if $(option_found "FLATPAK"); then
   $SETUP_SCRIPTS/flatpak.sh
-fi
-
-if $(option_found "NERD_FONTS"); then
-  $SETUP_SCRIPTS/nerdfonts.sh
-fi
-
-if $(option_found "PICOM"); then
-  $SETUP_SCRIPTS/picom.sh
-fi
-
-if $(option_found "PRINTERS"); then
-  $SETUP_SCRIPTS/printers.sh
 fi
 
 if $(option_found "SNAP"); then
   $SETUP_SCRIPTS/snap.sh
   $SETUP_SCRIPTS/snap_packages.sh
+fi
+
+if $(option_found "LIGHTDM"); then
+  $SETUP_SCRIPTS/lightdm.sh
+fi
+
+if $(option_found "WINDOW_MANAGERS"); then
+  # Choose and install window managers
+  $SETUP_SCRIPTS/WMS/window_managers.sh
 fi
 
 if $(option_found "WIFI_APPLET_SYSTRAY"); then

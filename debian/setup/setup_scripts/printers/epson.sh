@@ -6,7 +6,8 @@ SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/../utilities.sh
 
 msg "Installing driver for the printer..."
-sudo apt install epson-inkjet-printer-escpr
+sudo apt install printer-driver-escpr -y
+warning "If this driver doesn't work you have to download it from the Epson website"
 
 msg "To install the epson printer utility follows this steps:"
 msg "1) Go to this website:"

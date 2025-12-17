@@ -36,10 +36,10 @@ ln -s "$DIR_SCRIPT/git_status/git_dmenu_status.sh" "$DIR_EXEC/git_modified_repos
 ln -s "$DIR_SCRIPT/git_status/git_global_status.sh" "$DIR_EXEC/gitgstatus"
 
 # Keybindings list
-ln -s "$DIR_SCRIPT/Keybindings_list.sh" "$DIR_EXEC/keybindings"
+ln -s "$DIR_SCRIPT/keybindings_list.sh" "$DIR_EXEC/keybindings"
 
 # Keyboard battery status
-ln -s "$DIR_SCRIPT/keyboard_battery/status.sh" "$DIR_EXEC/kb_status_icon"
+ln -s "$DIR_SCRIPT/keyboard_battery/status_icon.sh" "$DIR_EXEC/kb_status_icon"
 
 # Dmenu to open the config files
 ln -s "$DIR_SCRIPT/list_config_dmenu.sh" "$DIR_EXEC/listconfigs"
