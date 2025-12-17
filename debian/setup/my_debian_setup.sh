@@ -75,7 +75,7 @@ sudo systemctl enable acpid
 
 #Fixing bat
 question "Is bat in any of the bin directories? (Y/N):"
-question "$(whereis batcat)"
+question "$(whereis bat)"
 read answer
 if [[ ! "$answer" =~ ^[Yy]$ ]]; then
   mkdir -p $HOME/.local/bin
