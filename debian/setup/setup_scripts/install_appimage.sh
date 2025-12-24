@@ -22,6 +22,12 @@ APP_LIST=(
   "texstudio"
 )
 
+LINKS=(
+  "https://github.com/neovim/neovim/releases/download/v0.11.5/nvim-linux-x86_64.appimage"
+  "https://www.gimp.org/downloads/" or "https://download.gimp.org/gimp/v3.0/linux/GIMP-3.0.6-x86_64.AppImage"
+  "https://www.texstudio.org/#download" like "https://github.com/texstudio-org/texstudio/releases/download/4.9.1/texstudio-4.9.1-x86_64.AppImage"
+)
+
 question "Do you want to install the following app images? (Y/N)"
 msg "${APP_LIST[@]}"
 read answer

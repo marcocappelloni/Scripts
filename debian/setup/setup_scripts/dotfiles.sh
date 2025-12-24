@@ -15,6 +15,13 @@ BACKUP_DIR="$HOME/backup_dotfiles"
 TARGET_DIR="$HOME"
 # ---------------------
 
+question "Do you want to replace the .bashrc file in the dotfiles directory with the one in your home directory? (Y/N)"
+read answer
+if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+  mv $HOME/dotfiles/.bashrc $HOME/dotfiles/.bashrc_bck
+  mv $HOME/.bashrc $HOME/dotfiles
+fi
+
 msg "Starting dotfiles conflict backup process (Stow '.' mode)..."
 
 # 1. Create the backup directory if it doesn't exist

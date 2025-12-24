@@ -8,6 +8,10 @@ msg "Setting up the bash shell..."
 sudo apt install lsd
 # cp .bash_aliases $HOME/
 
+msg "Backing up the original .bashrc files inside the home directory"
+cp $HOME/.bashrc $HOME/.bashrc_bck
+mv $HOME/dotfiles/.bashrc $HOME/dotfile/.bashrc_bck
+
 ##### MY OPTIONS AND ALIASES ADDED #####
 cat <<EOF >>$HOME/.bashrc
 
@@ -64,7 +68,6 @@ fi
 # Set the vi keybindings
 # set -o 
 
-#. "$HOME/.cargo/env"
 EOF
 
 msg "Bash shell set up"
