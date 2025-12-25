@@ -5,7 +5,7 @@
 source $HOME/PersonalHome/Scripts/debian/setup/setup_scripts/utilities.sh
 
 msg "Setting up the bash shell..."
-sudo apt install lsd
+sudo apt -y install lsd
 # cp .bash_aliases $HOME/
 
 msg "Backing up the original .bashrc files inside the home directory"
@@ -13,7 +13,7 @@ cp $HOME/.bashrc $HOME/.bashrc_bck
 mv $HOME/dotfiles/.bashrc $HOME/dotfile/.bashrc_bck
 
 ##### MY OPTIONS AND ALIASES ADDED #####
-cat <<EOF >>$HOME/.bashrc
+cat <<'EOF' >>"$HOME/.bashrc"
 
 # ignore upper and lowercase when TAB completion
 bind "set completion-ignore-case on"
