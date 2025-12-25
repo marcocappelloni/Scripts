@@ -53,6 +53,30 @@ is_in_repository() {
   echo $?
 }
 
+install_single_app() {
+  local app="$1"
+
+  check=$(is_in_repository "$app")
+  if [[ ! $check -eq 0 ]]; then
+    warning "$app is not in the repository"
+    exit 1
+  fi
+
+  check=$(is_installed "$app")
+  if [[ $check -eq 0 ]]; then
+    warning "$app is already installed."
+    exit 1
+  fi
+
+  sudo apt -y install "$app"
+  if [ $? -ne 0 ]; then
+    warning "Installation of '$app' failed."
+    exit 1
+  fi
+
+  msg "$app installed!"
+}
+
 # Install a list of apps passed as arguments
 install_packages() {
   msg "--- Starting installation package list ---"

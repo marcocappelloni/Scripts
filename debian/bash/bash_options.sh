@@ -4,12 +4,16 @@
 
 source $HOME/PersonalHome/Scripts/debian/setup/setup_scripts/utilities.sh
 
+BACKUP_DIR="$HOME/backup_dotfiles"
+
+mkdir -p $BACKUP_DIR
+
 msg "Setting up the bash shell..."
-sudo apt -y install lsd
+install_single_app "lsd"
 # cp .bash_aliases $HOME/
 
 msg "Backing up the original .bashrc files inside the home directory"
-cp $HOME/.bashrc $HOME/.bashrc_bck
+cp $HOME/.bashrc $BACKUP_DIR/.bashrc
 mv $HOME/dotfiles/.bashrc $HOME/dotfiles/.bashrc_bck
 
 ##### MY OPTIONS AND ALIASES ADDED #####
