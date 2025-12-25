@@ -15,9 +15,9 @@ BACKUP_DIR="$HOME/backup_dotfiles"
 TARGET_DIR="$HOME"
 # ---------------------
 
-question "Do you want to replace the .bashrc file in the dotfiles directory with the one in your home directory? (Y/N)"
+question "Do you want to replace the .bashrc file in the dotfiles directory with the one in your home directory? (y/n)"
 read answer
-if [[ ! "$answer" =~ ^[Yy]$ ]]; then
+if [[ "$answer" =~ ^[Yy]$ ]]; then
   mv $HOME/dotfiles/.bashrc $HOME/dotfiles/.bashrc_bck
   mv $HOME/.bashrc $HOME/dotfiles
 fi

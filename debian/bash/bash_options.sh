@@ -10,7 +10,7 @@ sudo apt -y install lsd
 
 msg "Backing up the original .bashrc files inside the home directory"
 cp $HOME/.bashrc $HOME/.bashrc_bck
-mv $HOME/dotfiles/.bashrc $HOME/dotfile/.bashrc_bck
+mv $HOME/dotfiles/.bashrc $HOME/dotfiles/.bashrc_bck
 
 ##### MY OPTIONS AND ALIASES ADDED #####
 cat <<'EOF' >>"$HOME/.bashrc"
