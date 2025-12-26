@@ -2,18 +2,16 @@
 
 # Script to setup the bash shell options
 
-source $HOME/PersonalHome/Scripts/debian/setup/setup_scripts/utilities.sh
+source $HOME/PersonalHome/Scripts/debian/setup/DIR_SETUP_SCRIPTS/utilities.sh
 
-BACKUP_DIR="$HOME/backup_dotfiles"
-
-mkdir -p $BACKUP_DIR
+mkdir -p $BACKUP_DOTFILES_DIR
 
 msg "Setting up the bash shell..."
 install_single_app "lsd"
 # cp .bash_aliases $HOME/
 
 msg "Backing up the original .bashrc files inside the home directory"
-cp $HOME/.bashrc $BACKUP_DIR/.bashrc
+cp $HOME/.bashrc $BACKUP_DOTFILES_DIR/.bashrc
 mv $HOME/dotfiles/.bashrc $HOME/dotfiles/.bashrc_bck
 
 ##### MY OPTIONS AND ALIASES ADDED #####

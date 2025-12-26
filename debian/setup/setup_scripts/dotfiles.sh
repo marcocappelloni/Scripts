@@ -2,6 +2,7 @@
 
 SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/utilities.sh
+source $SCRIPT_PATH/variables.sh
 
 question "Would you like to activate the process to create the symbolic link to my dotfiles with stow? (y/n)"
 read response
@@ -11,7 +12,7 @@ fi
 
 # --- Configuration ---
 DOTFILES_DIR="$HOME/dotfiles"
-BACKUP_DIR="$HOME/backup_dotfiles"
+#BACKUP_DIR="$HOME/backup_dotfiles"
 TARGET_DIR="$HOME"
 # ---------------------
 
@@ -25,12 +26,12 @@ fi
 msg "Starting dotfiles conflict backup process (Stow '.' mode)..."
 
 # 1. Create the backup directory if it doesn't exist
-mkdir -p "$BACKUP_DIR"
+mkdir -p "$BACKUP_DOTFILES_DIR"
 if [ $? -ne 0 ]; then
-  error "Failed to create backup directory $BACKUP_DIR. Aborting."
+  error "Failed to create backup directory $BACKUP_DOTFILES_DIR. Aborting."
   exit 1
 fi
-msg "Backup directory created/ensured: $BACKUP_DIR"
+msg "Backup directory created/ensured: $BACKUP_DOTFILES_DIR"
 
 # 2. Change to the dotfiles directory (which is the package source)
 if [ ! -d "$DOTFILES_DIR" ]; then
@@ -84,7 +85,7 @@ msg "Total unique conflicting files/directories to backup: $(echo "$CONFLICTING_
 # 5. Move the conflicting files to the backup directory
 for FILE_PATH in $CONFLICTING_FILES; do
   SOURCE="$TARGET_DIR/$FILE_PATH"
-  DEST_PATH="$BACKUP_DIR/$FILE_PATH"
+  DEST_PATH="$BACKUP_DOTFILES_DIR/$FILE_PATH"
   DEST_DIR=$(dirname "$DEST_PATH")
 
   if [ -e "$SOURCE" ] || [ -L "$SOURCE" ]; then
@@ -104,7 +105,7 @@ done
 
 msg "---"
 msg "Backup process finished."
-msg "Original files/directories have been moved to: **$BACKUP_DIR**"
+msg "Original files/directories have been moved to: **$BACKUP_DOTFILES_DIR**"
 
 question "Is everything ok to execute the stow command? (y/n)"
 read response

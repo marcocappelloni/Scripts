@@ -1,8 +1,8 @@
 #!/bin/bash
 
 SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
-source $SCRIPT_PATH/setup_scripts/variables.sh
-source $SCRIPT_PATH/setup_scripts/utilities.sh
+source $SCRIPT_PATH/DIR_SETUP_SCRIPTS/variables.sh
+source $SCRIPT_PATH/DIR_SETUP_SCRIPTS/utilities.sh
 
 # Comment the lines that you don't want to install
 OPTIONS_LIST=(
@@ -58,15 +58,15 @@ xdg-user-dirs-update
 
 # Install first group of packages, the essential one
 msg "Installing base packages..."
-$SETUP_SCRIPTS/install_apps.sh "${BASE_PACKAGES[*]}"
+$DIR_SETUP_SCRIPTS/install_apps.sh "${BASE_PACKAGES[*]}"
 
 # Install common packages
 msg "Installing common packages..."
-$SETUP_SCRIPTS/install_apps.sh "${COMMON_PACKAGES[*]}"
+$DIR_SETUP_SCRIPTS/install_apps.sh "${COMMON_PACKAGES[*]}"
 
 # Install common packages
 msg "Installing last set of packages..."
-$SETUP_SCRIPTS/install_apps.sh "${APPS_LIST[*]}"
+$DIR_SETUP_SCRIPTS/install_apps.sh "${APPS_LIST[*]}"
 
 # Enable services
 msg "Enabling services"
@@ -87,23 +87,23 @@ fi
 # ###############################################
 
 if $(option_found "AUDIO"); then
-  $SETUP_SCRIPTS/audio.sh
+  $DIR_SETUP_SCRIPTS/audio.sh
 fi
 
 if $(option_found "BLUETOOTH"); then
-  $SETUP_SCRIPTS/bluetooth.sh
+  $DIR_SETUP_SCRIPTS/bluetooth.sh
 fi
 
 if $(option_found "NERD_FONTS"); then
-  $SETUP_SCRIPTS/nerdfonts.sh
+  $DIR_SETUP_SCRIPTS/nerdfonts.sh
 fi
 
 if $(option_found "PICOM"); then
-  $SETUP_SCRIPTS/picom.sh
+  $DIR_SETUP_SCRIPTS/picom.sh
 fi
 
 if $(option_found "PRINTERS"); then
-  $SETUP_SCRIPTS/printers/common.sh
+  $DIR_SETUP_SCRIPTS/printers/common.sh
 fi
 
 if $(option_found "DMENU"); then
@@ -128,25 +128,25 @@ if $(option_found "MY_APPS"); then
 fi
 
 if $(option_found "FLATPAK"); then
-  $SETUP_SCRIPTS/flatpak.sh
+  $DIR_SETUP_SCRIPTS/flatpak.sh
 fi
 
 if $(option_found "SNAP"); then
-  $SETUP_SCRIPTS/snap.sh
-  $SETUP_SCRIPTS/snap_packages.sh
+  $DIR_SETUP_SCRIPTS/snap.sh
+  $DIR_SETUP_SCRIPTS/snap_packages.sh
 fi
 
 if $(option_found "LIGHTDM"); then
-  $SETUP_SCRIPTS/lightdm.sh
+  $DIR_SETUP_SCRIPTS/lightdm.sh
 fi
 
 if $(option_found "WINDOW_MANAGERS"); then
   # Choose and install window managers
-  $SETUP_SCRIPTS/WMS/window_managers.sh
+  $DIR_SETUP_SCRIPTS/WMS/window_managers.sh
 fi
 
 if $(option_found "WIFI_APPLET_SYSTRAY"); then
-  $SETUP_SCRIPTS/wifi_applet_systray.sh
+  $DIR_SETUP_SCRIPTS/wifi_applet_systray.sh
 fi
 
 if $(option_found "BASH_OPTION"); then
@@ -154,30 +154,30 @@ if $(option_found "BASH_OPTION"); then
 fi
 
 if $(option_found "CHEAT_SHEET"); then
-  $SETUP_SCRIPTS/cheat_sheet_client.sh
+  $DIR_SETUP_SCRIPTS/cheat_sheet_client.sh
 fi
 
 if $(option_found "APPIMAGE"); then
-  $SETUP_SCRIPTS/install_appimage.sh
+  $DIR_SETUP_SCRIPTS/install_appimage.sh
 fi
 
 if $(option_found "GEANY"); then
-  $SETUP_SCRIPTS/geany_install.sh
+  $DIR_SETUP_SCRIPTS/geany_install.sh
 fi
 
 if $(option_found "LIBREOFFICE"); then
-  $SETUP_SCRIPTS/libreoffice.sh
+  $DIR_SETUP_SCRIPTS/libreoffice.sh
 fi
 
 if $(option_found "YAZI"); then
-  $SETUP_SCRIPTS/yazi.sh
+  $DIR_SETUP_SCRIPTS/yazi.sh
 fi
 
 if $(option_found "VIRTUAL_MACHINES"); then
-  $SETUP_SCRIPTS/virtual_machines.sh
+  $DIR_SETUP_SCRIPTS/virtual_machines.sh
 fi
 
 if $(option_found "DOTFILES"); then
   # Symlink the dotfiles using stow
-  $SETUP_SCRIPTS/dotfiles.sh
+  $DIR_SETUP_SCRIPTS/dotfiles.sh
 fi

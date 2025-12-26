@@ -2,7 +2,7 @@
 
 SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/../utilities.sh
-source $SCRIPT_PATH/WM_utilities.sh
+source $SCRIPT_PATH/../variables.sh
 
 clear
 

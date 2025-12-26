@@ -1,10 +1,11 @@
 #!/bin/bash
 
-SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/setup_scripts"
+DIR_SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/DIR_SETUP_SCRIPTS"
 DEBIAN_BASE="$HOME/PersonalHome/Scripts/debian"
 MY_APPS="$HOME/PersonalHome/Scripts/MyApps"
 TEMP_DIR="/tmp/setup_$$"
 LOG_FILE="$HOME/setup.log"
+BACKUP_DOTFILES_DIR="$HOME/backup_dotfiles"
 
 BASE_PACKAGES=(
   build-essential
@@ -77,4 +78,10 @@ APPS_LIST=(
   simple-scan
   sxhkd
   vlc
+)
+
+WM_LIST=(
+  "DWM"
+  "I3WM"
+  "QTILE"
 )
