@@ -17,5 +17,5 @@ for app in "${apps[@]}"; do
 done
 
 mkdir -p picom redshift
-mv .config/picom.conf picom/.config
-mv .config/redshift.conf redshift/.config
+mv .config/picom.conf picom/.config/
+mv .config/redshift.conf redshift/.config/
