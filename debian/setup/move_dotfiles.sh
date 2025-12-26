@@ -9,10 +9,7 @@ mv .bashrc bash/
 mv .inputrc .profile .xprofile .Xresources .Xresources.d/ system
 mv bloodynight_colors.txt nimona_colors.txt extra
 
-mkdir -p bash/.config
-mv .config/bash bash/.config/
-
-apps=("alacritty" "bash" "bat" "fastfetch" "ghostty" "helix" "i3" "kitty" "nvim" "polybar" "qtile" "rofi" "rofi_list" "yazi" "tmux" "zsh")
+apps=("alacritty" "bash" "bat" "fastfetch" "ghostty" "helix" "i3" "kitty" "nvim" "polybar" "qtile" "rofi" "rofi_list" "yazi")
 
 for app in "${apps[@]}"; do
   mkdir -p $app/.config
