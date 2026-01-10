@@ -1,0 +1,118 @@
+#!/bin/bash
+
+SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
+source $SCRIPT_PATH/utilities.sh
+source $SCRIPT_PATH/variables.sh
+
+question "Would you like to activate the process to create the symbolic link to my dotfiles with stow? (y/n)"
+read response
+if [[ ! "$response" =~ ^[Yy]$ ]]; then
+  exit 0
+fi
+
+# --- Configuration ---
+DOTFILES_DIR="$HOME/dotfiles"
+#BACKUP_DIR="$HOME/backup_dotfiles"
+TARGET_DIR="$HOME"
+# ---------------------
+
+question "Do you want to replace the .bashrc file in the dotfiles directory with the one in your home directory? (y/n)"
+read answer
+if [[ "$answer" =~ ^[Yy]$ ]]; then
+  mv $HOME/dotfiles/.bashrc $HOME/dotfiles/.bashrc_bck
+  mv $HOME/.bashrc $HOME/dotfiles
+fi
+
+msg "Starting dotfiles conflict backup process (Stow '.' mode)..."
+
+# 1. Create the backup directory if it doesn't exist
+mkdir -p "$BACKUP_DOTFILES_DIR"
+if [ $? -ne 0 ]; then
+  error "Failed to create backup directory $BACKUP_DOTFILES_DIR. Aborting."
+  exit 1
+fi
+msg "Backup directory created/ensured: $BACKUP_DOTFILES_DIR"
+
+# 2. Change to the dotfiles directory (which is the package source)
+if [ ! -d "$DOTFILES_DIR" ]; then
+  error "Dotfiles directory $DOTFILES_DIR not found. Aborting."
+  exit 1
+fi
+cd "$DOTFILES_DIR"
+
+# 3. Run a dry-run of 'stow .' to capture conflicts
+PKG_NAME="." # The package name is the current directory
+
+# Run the dry-run command, directing stderr (where warnings go) to a variable
+# We suppress the "All operations aborted" line by piping through tail -n +2
+STOW_OUTPUT=$(stow -S -n -t "$TARGET_DIR" "$PKG_NAME" 2>&1)
+
+# Pattern for extracting the conflicting file name:
+# It finds the line and captures the word immediately following "over existing target "
+CONFLICT_LINE_PATTERN="cannot stow .* over existing target"
+CONFLICTING_FILES=""
+
+# Check if the output contains the conflict warning
+if echo "$STOW_OUTPUT" | grep -q "WARNING! stowing"; then
+  warning "  Conflicts detected. Capturing files..."
+
+  # Extract the conflicting filenames/paths using sed with regex capture groups
+  CONFLICTS=$(echo "$STOW_OUTPUT" | grep "$CONFLICT_LINE_PATTERN" |
+    sed -E 's/.* over existing target ([^ ]+).*/\1/')
+
+  if [ ! -z "$CONFLICTS" ]; then
+    CONFLICTING_FILES="$CONFLICTS"
+    msg "  Captured conflicting item(s)."
+  else
+    warning "  Warning: Conflict pattern found but file name extraction failed."
+  fi
+else
+  msg "  No conflicts detected."
+fi
+
+msg "---"
+
+# 4. Process the list of unique conflicting files
+CONFLICTING_FILES=$(echo "$CONFLICTING_FILES" | grep -v '^\s*$' | sort -u)
+
+if [ -z "$CONFLICTING_FILES" ]; then
+  msg "✅ No pre-existing files found in $TARGET_DIR that would conflict with stow. Backup complete."
+  exit 0
+fi
+
+msg "Total unique conflicting files/directories to backup: $(echo "$CONFLICTING_FILES" | wc -l)"
+
+# 5. Move the conflicting files to the backup directory
+for FILE_PATH in $CONFLICTING_FILES; do
+  SOURCE="$TARGET_DIR/$FILE_PATH"
+  DEST_PATH="$BACKUP_DOTFILES_DIR/$FILE_PATH"
+  DEST_DIR=$(dirname "$DEST_PATH")
+
+  if [ -e "$SOURCE" ] || [ -L "$SOURCE" ]; then
+    # Create the necessary directory structure in the backup location
+    mkdir -p "$DEST_DIR"
+
+    # Move the file/directory to the backup location
+    if mv "$SOURCE" "$DEST_PATH"; then
+      msg "  Backed up: **$FILE_PATH**"
+    else
+      warning "  Failed to move **$FILE_PATH** to backup. Check permissions."
+    fi
+  else
+    warning "  Skipping: $FILE_PATH was listed as a conflict but does not exist at $SOURCE."
+  fi
+done
+
+msg "---"
+msg "Backup process finished."
+msg "Original files/directories have been moved to: **$BACKUP_DOTFILES_DIR**"
+
+question "Is everything ok to execute the stow command? (y/n)"
+read response
+if [[ "$response" =~ ^[Yy]$ ]]; then
+  cd "$DOTFILES_DIR"
+  stow .
+fi
+
+# Change back to the home directory for safety
+cd "$HOME"

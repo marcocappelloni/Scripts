@@ -22,9 +22,9 @@ mv .config/redshift.conf redshift/.config/redshift.conf
 mv .dwm dwm/
 
 rm -r .config/
-stowpackages=("system" "dwm" "alacritty" "bash" "bat" "fastfetch" "ghostty" "helix" "i3" "kitty" "nvim" "polybar" "qtile" "rofi" "rofi_list" "yazi")
+#stowpackages=("system" "dwm" "alacritty" "bash" "bat" "fastfetch" "ghostty" "helix" "i3" "kitty" "nvim" "polybar" "qtile" "rofi" "rofi_list" "yazi")
 
-for package in "${stowpackages[@]}"; do
-  stow -D "$package" # Unstow first to avoid old link issues
-  stow "$package"
-done
+#for package in "${stowpackages[@]}"; do
+#  stow -D "$package" # Unstow first to avoid old link issues
+#  stow "$package"
+#done
