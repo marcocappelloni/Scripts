@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Script to install Libreoffice taken from "https://download.documentfoundation.org/libreoffice/stable/"
 

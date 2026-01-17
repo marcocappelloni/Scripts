@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
 # Script to install the applications passed through an array passed
 # as argument when you call the script.
 

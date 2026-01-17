@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/../utilities.sh
@@ -56,6 +56,9 @@ msg "Array chosen: ${WM_CHOSEN[*]}"
 
 for INDEX in ${WM_CHOSEN[*]}; do
   case "${WM_LIST[$((INDEX - 1))]}" in
+  "BSPWM")
+    $SCRIPT_PATH/install_bspwm.sh
+    ;;
   "DWM")
     $SCRIPT_PATH/install_dwm.sh
     ;;

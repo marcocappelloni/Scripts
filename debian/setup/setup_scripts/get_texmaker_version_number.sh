@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 BASE_ADDRESS="https://www.xm1math.net/texmaker/assets/files"
 
 # Extract the last stable version number

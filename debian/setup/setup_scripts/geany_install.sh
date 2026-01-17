@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Author: Marco Cappelloni
 # Script to install Geany with the main plugins and some colorschemes

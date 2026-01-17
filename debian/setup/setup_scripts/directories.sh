@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 DIR_SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/DIR_SETUP_SCRIPTS"
 DEBIAN_BASE="$HOME/PersonalHome/Scripts/debian"

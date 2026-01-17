@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
 source $SCRIPT_PATH/DIR_SETUP_SCRIPTS/variables.sh
