@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DIR_SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/DIR_SETUP_SCRIPTS"
+DIR_SETUP_SCRIPTS="$HOME/PersonalHome/Scripts/debian/setup/setup_scripts"
 DEBIAN_BASE="$HOME/PersonalHome/Scripts/debian"
 MY_APPS="$HOME/PersonalHome/Scripts/MyApps"
 TEMP_DIR="/tmp/setup_$$"

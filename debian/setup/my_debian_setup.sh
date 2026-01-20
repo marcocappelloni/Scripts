@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
 SCRIPT_PATH=$(dirname "${BASH_SOURCE}")
-source $SCRIPT_PATH/DIR_SETUP_SCRIPTS/variables.sh
-source $SCRIPT_PATH/DIR_SETUP_SCRIPTS/utilities.sh
+source $SCRIPT_PATH/setup_scripts/variables.sh
+
+source $DIR_SETUP_SCRIPTS/utilities.sh
 
 # Comment the lines that you don't want to install
 OPTIONS_LIST=(

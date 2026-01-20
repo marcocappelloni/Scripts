@@ -31,19 +31,19 @@ fi
 # Case statement to determine which icon to display based on the status and capacity
 case "$level" in
 "5")
-  echo "${color_high}󱃂 "
+  echo "${color_high} "
   ;;
 "4")
-  echo "${color_med_high}󱃂 "
+  echo "${color_med_high} "
   ;;
 "3")
-  echo "${color_med}󱃂 "
+  echo "${color_med} "
   ;;
 "2")
-  echo "${color_low_med}󱃃 "
+  echo "${color_low_med} "
   ;;
 "1")
-  echo "${color_low} "
+  echo "${color_low} "
   ;;
 # Fallback for any other case
 *)
