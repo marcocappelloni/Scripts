@@ -59,6 +59,7 @@ COMMON_PACKAGES=(
 
 APPS_LIST=(
   chromium
+  conky
   dunst
   evolution
   evolution-ews
