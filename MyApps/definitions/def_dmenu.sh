@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-word=${1:-$(xclip -o -selection primary 2>/dev/null || wl-paste 2>/dev/null)}
-
-word="pressure"
+#word=${1:-$(xclip -o -selection primary 2>/dev/null || wl-paste 2>/dev/null)}
+word=$(zenity --entry --text="Check the definition of:")
 
 # Check for empty word or special characters
 [[ -z "$word" || "$word" =~ [\/] ]] && notify-send -h string:bgcolor:#bf616a -t 3000 "Invalid input." && exit 0
@@ -19,7 +18,9 @@ query=$(curl -s --connect-timeout 5 --max-time 10 "https://api.dictionaryapi.dev
 def=$(echo "$query" | jq -r '[.[].meanings[] | {pos: .partOfSpeech, def: .definitions[].definition}] | .[:3].[] | "\n\(.pos). \(.def)"')
 
 # Requires a notification daemon to be installed
-notify-send -t 60000 "$word -" "$def"
+# notify-send -t 60000 "$word -" "$def"
+
+zenity --info --title="$word" --text="$def"
 
 ### MORE OPTIONS :)
 

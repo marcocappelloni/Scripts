@@ -10,6 +10,9 @@ declare -a myArray=(
   "alt + c             ->    fzf cd"
   "super + shift + t   ->    todo menu"
   "super + F9          ->    keybindings"
+  "super + F10         ->    selected definition"
+  "super + F11         ->    colors theme switcher"
+  "super + shift + F10 ->    enter definition"
   "super + b           ->    vim keybindings"
   "super + e           ->    devel_environment"
 )

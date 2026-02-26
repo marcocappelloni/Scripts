@@ -64,3 +64,12 @@ ln -s "$DIR_SCRIPT/todomenu.sh" "$DIR_EXEC/todomenu"
 
 # Vim keys
 ln -s "$DIR_SCRIPT/vim_keys.sh" "$DIR_EXEC/vim_keys"
+
+# Vocabular definitions from window
+ln -s "$DIR_SCRIPT/definitions/def_dmenu.sh" "$DIR_EXEC/definition_dmenu"
+
+# Vocabular definitions from selection
+ln -s "$DIR_SCRIPT/definitions/def_selection.sh" "$DIR_EXEC/definition_selection"
+
+# Color switcher
+ln -s "$DIR_SCRIPT/theme_switch/color_switcher.sh" "$DIR_EXEC/color_switcher"
