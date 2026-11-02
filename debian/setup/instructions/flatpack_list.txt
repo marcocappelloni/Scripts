@@ -1,6 +1,2 @@
 thunderbird
 https://flathub.org/apps/org.mozilla.Thunderbird
-
-vscodium
-https://flathub.org/apps/com.vscodium.codium
-flatpak install flathub com.vscodium.codium

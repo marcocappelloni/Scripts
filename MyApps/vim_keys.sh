@@ -65,5 +65,5 @@ printf "%s" "$KEYBINDINGS" | rofi -dmenu \
   -u "0" \
   -a "2,9,14,19,25" \
   -sep '\n' \
-  -config ~/dotfiles/.config/rofi_list/config.rasi \
+  -config ~/dotfiles/rofi_list/.config/rofi_list/config.rasi \
   -theme-str 'window { width: '$WIDTH'; height: '$HEIGHT'; border: 3px; border-color: '$BORDER_COLOR'; }'
