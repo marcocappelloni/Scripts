@@ -15,6 +15,8 @@ declare -a myArray=(
   "super + shift + F10 ->    enter definition"
   "super + b           ->    vim keybindings"
   "super + e           ->    devel_environment"
+  "super + g           ->    git aliases"
+  "super + shift + g   ->    git modified repos"
 )
 
 chosen=$(printf '%s\n' "${myArray[@]}" | dmenu -l 15 -p "Keybindings:")
