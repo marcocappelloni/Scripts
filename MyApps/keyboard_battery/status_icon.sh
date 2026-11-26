@@ -1,5 +1,12 @@
 #!/bin/bash
 
+icon_full="󰥻  󱊣 "
+icon_medium="󰥻  󱊢 "
+icon_low="󰥻  󱊡 "
+icon_critical="󰥻  󱃍 "
+icon_disconnected="󰥻  󱉞 "
+icon_charging="󰥻  󱊦 "
+
 color_critical="^c#FF0000^"
 color_low="^c#FFA500^"
 color_medium="^c#DDDD44^"
@@ -65,14 +72,14 @@ fi
 if [[ $status == "Char" ]]; then
 
   echo "$(get_battery_status_from_percentage)" >"$old_status_file"
-  echo "${color_full}󱊦 "
+  echo "${color_full}${icon_charging}"
   exit 0
 fi
 
 if [[ $status == "Full" ]]; then
 
   echo "Full" >"$old_status_file"
-  echo "${color_full}󱊦 "
+  echo "${color_full}${icon_charging}"
   exit 0
 fi
 
@@ -85,22 +92,22 @@ fi
 case "$capacity" in
 "Full")
   echo "Full" >"$old_status_file"
-  echo "${color_full}󱊣 "
+  echo "${color_full}${icon_full}"
   ;;
 "Normal")
   echo "Normal" >"$old_status_file"
-  echo "${color_medium}󱊢 "
+  echo "${color_medium}${icon_medium}"
   ;;
 "Low")
   echo "Low" >"$old_status_file"
-  echo "${color_low}󱊡 "
+  echo "${color_low}${icon_low}"
   ;;
 "Critical")
   echo "Critical" >"$old_status_file"
-  echo "${color_critical}󱃍 "
+  echo "${color_critical}${icon_critical}"
   ;;
 # Fallback for any other case
 *)
-  echo "${color_critical}󱉞 "
+  echo "${color_critical}${icon_disconnected}"
   ;;
 esac
